@@ -6,6 +6,9 @@ const response = await fetch(`${Astro.url}api/io`, {
 				'User-Agent': 'custom/non-standard',
 		},
 		method: 'POST',
+		body: JSON.stringify({
+			"hello": "world"
+		})
 })
 console.log('first')
 const result = await response.json();

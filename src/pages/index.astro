@@ -1,13 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const response = await fetch(`${Astro.url}/api/io`, {
+const response = await fetch(`${Astro.url}api/io`, {
 		headers: {
 				'Content-Type': 'application/json',
 				'User-Agent': 'custom/non-standard',
 		},
 		method: 'POST',
 })
-console.log(response)
+console.log('first')
+console.log(response.json())
 ---
 
 <Layout title="LangChain">

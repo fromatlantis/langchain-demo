@@ -1,0 +1,30 @@
+{
+  "name": "langchain-demo",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.3.0",
+    "@astrojs/node": "^6.0.3",
+    "@astrojs/solid-js": "^3.0.2",
+    "@vite-pwa/astro": "^0.1.4",
+    "astro": "^3.4.2",
+    "langchain": "^0.0.178",
+    "solid-js": "^1.4.3",
+    "typescript": "^5.2.2",
+    "unocss": "^0.57.1",
+    "vite-plugin-pwa": "^0.16.6",
+    "workbox-window": "^7.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-aurai": "^0.0.1"
+  }
+}

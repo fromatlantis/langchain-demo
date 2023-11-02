@@ -1,0 +1,21 @@
+{
+    "editor.fontSize": 16,
+    "editor.fontFamily": "monospace",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll.stylelint": true,
+      "source.fixAll": true
+    },
+    "stylelint.validate": ["css", "scss", "html", "vue", "astro"],
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "html",
+      "vue",
+      "astro"
+    ],
+    // "deno.enable": true
+  }
+  

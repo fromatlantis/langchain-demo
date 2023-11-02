@@ -7,7 +7,7 @@ import Layout from '../layouts/Layout.astro';
 	<div>demo</div>
 </Layout>
 <script>
-const response = await fetch(`/api/ioModel.json`)
+const response = await fetch(`/api/io`)
 console.log('first')
 const result = await response.json()
 console.log(result)

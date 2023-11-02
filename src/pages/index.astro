@@ -11,8 +11,8 @@ const response = await fetch(`${Astro.url}api/io`, {
 		})
 })
 console.log('first')
-// const result = await response.json();
 console.log(response)
+const result = await response.json();
 ---
 
 <Layout title="LangChain">

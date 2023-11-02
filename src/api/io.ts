@@ -53,7 +53,7 @@ export const post: APIRoute = async ({ params, request }) => {
     query: "List 5 countries.",
   });
   return new Response(JSON.stringify({
-    name: 'nzw'
+    name: "nzw"
   }), {
     status: 200,
     headers: {

@@ -1,16 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const response = await fetch(`${Astro.url}api/ioModel.json`)
-console.log('first')
-console.log(response)
-const result = await response.json();
-console.log(result)
+
 ---
 
 <Layout title="LangChain">
 	<div>demo</div>
 </Layout>
-
+<script>
+const response = await fetch(`/api/ioModel.json`)
+console.log('first')
+const result = await response.json()
+console.log(result)
+</script>
 <style>
 	main {
 		margin: auto;

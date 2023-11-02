@@ -61,3 +61,12 @@ export const post: APIRoute = async ({ params, request }) => {
     }
   });
 };
+
+export const get:APIRoute = async ({params, request}) =>{
+  return new Response(
+    JSON.stringify({
+      name: 'Astro',
+      url: 'https://astro.build/'
+    })
+  )
+}

@@ -52,7 +52,9 @@ export const post: APIRoute = async ({ params, request }) => {
   const result = await answerFormattingChain.call({
     query: "List 5 countries.",
   });
-  return new Response(JSON.stringify(result.records), {
+  return new Response(JSON.stringify({
+    name: 'nzw'
+  }), {
     status: 200,
     headers: {
       "Content-Type": "application/json"

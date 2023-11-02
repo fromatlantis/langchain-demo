@@ -1,15 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const response = await fetch(`${Astro.url}api/io.json`, {
-		headers: {
-				'Content-Type': 'application/json',
-				'User-Agent': 'custom/non-standard',
-		},
-		method: 'POST',
-		body: JSON.stringify({
-			"hello": "world"
-		})
-})
+const response = await fetch(`${Astro.url}api/io.json`)
 console.log('first')
 console.log(response)
 const result = await response.json();

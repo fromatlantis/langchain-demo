@@ -62,11 +62,9 @@ import { OPENAI_API_KEY } from '~/config';
 //   });
 // };
 
-export const get:APIRoute = async ({params, request}) =>{
-  return new Response(
-    JSON.stringify({
-      name: 'Astro',
-      url: 'https://astro.build/'
+export const GET: APIRoute = ({ params, request }) => {
+  return new Response(JSON.stringify({
+      message: "This was a GET!"
     })
   )
 }

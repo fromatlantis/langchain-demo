@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import node from "@astrojs/node";
+import deno from '@astrojs/deno';
 
 import solid from "@astrojs/solid-js";
 import UnoCSS from 'unocss/astro';
@@ -9,9 +10,7 @@ import AstroPWA from '@vite-pwa/astro';
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: node({
-    mode: "standalone"
-  }),
+  adapter: deno(),
   integrations: [
     UnoCSS(),
     solid(),

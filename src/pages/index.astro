@@ -1,12 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
----
-
-<Layout title="LangChain">
-	<div>demo</div>
-</Layout>
-<script>
-	const response = await fetch(`/api/io`, {
+const response = await fetch(`/api/io`, {
 		headers: {
 				'Content-Type': 'application/json',
 				'User-Agent': 'custom/non-standard',
@@ -18,6 +12,12 @@ import Layout from '../layouts/Layout.astro';
 })
 const result = await response.json();
 console.log(result)
+---
+
+<Layout title="LangChain">
+	<div>demo</div>
+</Layout>
+<script>
 </script>
 <style>
 	main {

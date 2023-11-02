@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const response = await fetch(`/api/io`, {
+const response = await fetch(`${Astro.url}/api/io`, {
 		headers: {
 				'Content-Type': 'application/json',
 				'User-Agent': 'custom/non-standard',

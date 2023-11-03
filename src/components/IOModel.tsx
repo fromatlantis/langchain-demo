@@ -1,8 +1,10 @@
-import { createSignal, onMount, For } from 'solid-js';
+import { createSignal, onMount, For, Show } from 'solid-js';
+import LoadingMask from './LoadingMask';
 
 const IOModel = () => {
     const [prompt, setPrompt] = createSignal('List 5 countries.');
     const [countries, setCountries] = createSignal([]);
+    const [loading, setLoading] = createSignal(false);
 
     onMount(async () => {
         getCountries();
@@ -17,6 +19,7 @@ const IOModel = () => {
     };
 
     const getCountries = async () => {
+        setLoading(true);
         const response = await fetch(`/api/io`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -29,10 +32,14 @@ const IOModel = () => {
         });
         const result = await response.json();
         setCountries(result);
+        setLoading(false);
     };
 
     return (
-        <div class="w-full flex-1">
+        <div class="w-full flex-1 relative">
+            <Show when={loading()}>
+                <LoadingMask />
+            </Show>
             <ar-textarea
                 value={prompt()}
                 onChange={handleChange}

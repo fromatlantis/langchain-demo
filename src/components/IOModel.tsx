@@ -40,14 +40,16 @@ const IOModel = () => {
             <Show when={loading()}>
                 <LoadingMask />
             </Show>
-            <ar-textarea
-                value={prompt()}
-                onChange={handleChange}
-                placeholder="user prompt"
-            ></ar-textarea>
-            <ar-button onClick={handleSend}>
-                <ar-icon name="send"></ar-icon>
-            </ar-button>
+            <div class="w-full flex">
+                <ar-textarea
+                    value={prompt()}
+                    onChange={handleChange}
+                    placeholder="user prompt"
+                ></ar-textarea>
+                <ar-button onClick={handleSend}>
+                    <ar-icon name="send"></ar-icon>
+                </ar-button>
+            </div>
             <For each={countries()}>
                 {(country) => (
                     <li>

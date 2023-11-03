@@ -47,13 +47,27 @@ const IOModel = () => {
                     <ar-icon name="send"></ar-icon>
                 </ar-button>
             </div>
-            <For each={countries()}>
-                {(country) => (
-                    <li>
-                        Name: {country.Name} Capital: {country.Capital}
-                    </li>
-                )}
-            </For>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Countries Demo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>国家名称</td>
+                        <td>国家首都</td>
+                    </tr>
+                    <For each={countries()}>
+                        {(country) => (
+                            <tr>
+                                <td>{country.Name}</td>
+                                <td>{country.Capital}</td>
+                            </tr>
+                        )}
+                    </For>
+                </tbody>
+            </table>
         </div>
     );
 };

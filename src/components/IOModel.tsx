@@ -32,7 +32,7 @@ const IOModel = () => {
     };
 
     return (
-        <div class="w-full flex-1 overflow-auto flex justify-center">
+        <div class="w-full flex-1">
             <ar-textarea
                 value={prompt()}
                 onChange={handleChange}

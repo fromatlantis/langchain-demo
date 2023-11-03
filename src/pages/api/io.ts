@@ -44,7 +44,6 @@ export const post: APIRoute = async ({ params, request }) => {
         outputKey: 'records', // For readability - otherwise the chain output will default to a property named "text"
         outputParser: outputFixingParser,
     });
-    console.log(prompt);
     const result = await answerFormattingChain.call({
         query: body.prompt,
     });

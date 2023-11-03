@@ -1,14 +1,10 @@
-import { createSignal, onMount, For, Show } from 'solid-js';
+import { createSignal, For, Show } from 'solid-js';
 import LoadingMask from './LoadingMask';
 
 const IOModel = () => {
     const [prompt, setPrompt] = createSignal('List 5 countries.');
     const [countries, setCountries] = createSignal([]);
     const [loading, setLoading] = createSignal(false);
-
-    onMount(async () => {
-        getCountries();
-    });
 
     const handleChange = (e: CustomEvent) => {
         setPrompt(e.detail.value);
@@ -42,6 +38,7 @@ const IOModel = () => {
             </Show>
             <div class="w-full flex">
                 <ar-textarea
+                    class="flex-1"
                     value={prompt()}
                     onChange={handleChange}
                     placeholder="user prompt"

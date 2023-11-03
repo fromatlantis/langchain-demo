@@ -31,7 +31,7 @@ export const post: APIRoute = async ({ params, request }) => {
 
     // Don't forget to include formatting instructions in the prompt!
     const prompt = new PromptTemplate({
-        template: `\n{format_instructions}\n{query}`,
+        template: `{format_instructions}\n{query}`,
         inputVariables: ['query'],
         partialVariables: {
             format_instructions: outputFixingParser.getFormatInstructions(),

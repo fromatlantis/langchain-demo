@@ -18,7 +18,7 @@ const IOModel = () => {
     });
 
     return (
-        <div>
+        <div class="w-full flex-1 overflow-auto">
             <For each={countries()}>
                 {(country) => (
                     <li>

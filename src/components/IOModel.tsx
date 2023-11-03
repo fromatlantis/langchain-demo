@@ -18,13 +18,15 @@ const IOModel = () => {
     });
 
     return (
-        <For each={countries()}>
-            {(country) => (
-                <li>
-                    Name: {country.Name} Capital: {country.Capital}
-                </li>
-            )}
-        </For>
+        <div>
+            <For each={countries()}>
+                {(country) => (
+                    <li>
+                        Name: {country.Name} Capital: {country.Capital}
+                    </li>
+                )}
+            </For>
+        </div>
     );
 };
 

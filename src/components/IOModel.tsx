@@ -1,5 +1,6 @@
-import { onMount } from 'solid-js';
+import { createSignal, onMount, For } from 'solid-js';
 const IOModel = () => {
+    const [countries, setCountries] = createSignal([]);
     onMount(async () => {
         const response = await fetch(`/api/io`, {
             headers: {
@@ -12,9 +13,18 @@ const IOModel = () => {
             }),
         });
         const result = await response.json();
+        setCountries(result);
     });
 
-    return <div>Model IO</div>;
+    return (
+        <For each={countries()}>
+            {(country) => (
+                <li>
+                    Name: {country.Name} Capital: {country.Capital}
+                </li>
+            )}
+        </For>
+    );
 };
 
 export default IOModel;

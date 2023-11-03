@@ -1,101 +1,115 @@
 ---
 import { pwaInfo } from 'virtual:pwa-info';
 export interface Props {
-	title: string;
+    title: string;
 }
 const { title } = Astro.props as Props;
 const { pathname } = Astro.url;
 const SLOGAN = 'AI expands your life.';
 ---
+
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg?t=202306100945" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="192x192" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover"
-		/>
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={SLOGAN} />
-		<meta name="keywords" content="LangChain Demo" />
-		<title>{title}</title>
-		<style>
-			:root {
-				--gray-1: 247, 248, 250;
-				--gray-2: 242, 243, 245;
-				--gray-3: 229, 230, 235;
-				--theme-color: linear-gradient(-45deg, #7d64f9, #027aff);
-				--secondary-color: rgb(var(--gray-2));
-				--secondary-color-hover: rgb(var(--gray-3));
-				--font-color: #333;
-				--border-color: #f0f5f9;
-				--border-radius: 3px;
-				--success-color: #4caf50;
-				--waring-color: #fbd14b;
-				--error-color: #f94e3f;
-				--info-color: #c9d6de;
-				--danger-color: #ff7473;
-			}
-			html,
-			body {
-				width: 100%;
-				height: 100%;
-			}
-			body {
-				margin: 0;
-				font-size: 14px;
-			}
-			a {
-				text-decoration: none;
-				color: inherit;
-			}
-			.aside {
-				background-color: #f1f5f8; 
-				width: 200px;
-			}
-			.logo {
-				background-image: var(--theme-color);
-				-webkit-background-clip: text;
-    		-webkit-text-fill-color: transparent;
-				margin-bottom: 30px;
-				margin-left: 20px;
-			}
-			.menu-item {
-				margin-right: 15px;
-    		padding: 10px 15px;
-			}
-			.active {
-				color: #fff;
-				background-image: var(--theme-color);
-				border-right: 0 solid #000;
-				border-radius: 0 20px 20px 0;
-			}
-		</style>
-		<script src="/src/pwa.ts"></script>
-    { pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} /> }
-	</head>
-	<body>
-		<div class="h-full flex flex-row">
-			<div class="h-full overflow-auto aside">
-				<!-- 左侧菜单 -->
-				<h2 class="logo">LangChain</h2>
-				<div class:list={['menu-item', { active: pathname === '/' }]}>
-					<a href="/">首页</a>
-				</div>
-				<div class:list={['menu-item', { active: pathname === '/model-io' }]}>
-					<a href="/model-io">Model I/O</a>
-				</div>
-				<div class:list={['menu-item', { active: pathname === '/model-fitting' }]}>
-					<a href="/model-fitting">模特试衣</a>
-				</div>
-			</div>
-			<div class="h-full overflow-auto flex-1">
-					<!-- 主要内容区插槽 -->
-					<slot />
-			</div>
-		</div>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?t=202306100945" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="192x192" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+        />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={SLOGAN} />
+        <meta name="keywords" content="LangChain Demo" />
+        <title>{title}</title>
+        <style>
+            :root {
+                --gray-1: 247, 248, 250;
+                --gray-2: 242, 243, 245;
+                --gray-3: 229, 230, 235;
+                --theme-color: linear-gradient(-45deg, #7d64f9, #027aff);
+                --secondary-color: rgb(var(--gray-2));
+                --secondary-color-hover: rgb(var(--gray-3));
+                --font-color: #333;
+                --border-color: #f0f5f9;
+                --border-radius: 3px;
+                --success-color: #4caf50;
+                --waring-color: #fbd14b;
+                --error-color: #f94e3f;
+                --info-color: #c9d6de;
+                --danger-color: #ff7473;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                font-size: 14px;
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            .aside {
+                background-color: #f1f5f8;
+                width: 200px;
+            }
+            .logo {
+                background-image: var(--theme-color);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 30px;
+                margin-left: 20px;
+            }
+            .menu-item {
+                margin-right: 15px;
+                padding: 10px 15px;
+            }
+            .active {
+                color: #fff;
+                background-image: var(--theme-color);
+                border-right: 0 solid #000;
+                border-radius: 0 20px 20px 0;
+            }
+        </style>
+        <script src="/src/pwa.ts"></script>
+        {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+    </head>
+    <body>
+        <div class="h-full flex flex-row">
+            <div class="h-full overflow-auto aside">
+                <!-- 左侧菜单 -->
+                <h2 class="logo">LangChain</h2>
+                <div class:list={['menu-item', { active: pathname === '/' }]}>
+                    <a href="/">首页</a>
+                </div>
+                <div class:list={['menu-item', { active: pathname === '/model-io' }]}>
+                    <a href="/model-io">Model I/O</a>
+                </div>
+                <div class:list={['menu-item', { active: pathname === '/model-fitting' }]}>
+                    <a href="/model-fitting">模特试衣</a>
+                </div>
+            </div>
+            <div class="h-full overflow-auto flex-1">
+                <!-- 主要内容区插槽 -->
+                <slot />
+            </div>
+        </div>
+    </body>
 </html>
 <script>
+    import {
+        defineCustomElements,
+        registerIcon,
+        Icon,
+        Button,
+        Textarea,
+    } from '@aura-group/aura-desigin';
+    registerIcon('/iconfont.svg');
+    defineCustomElements({
+        Icon,
+        Button,
+        Textarea,
+    });
 </script>

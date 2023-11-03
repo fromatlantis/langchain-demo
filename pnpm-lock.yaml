@@ -17,6 +17,9 @@ dependencies:
   '@astrojs/solid-js':
     specifier: ^3.0.2
     version: 3.0.2(solid-js@1.8.5)(vite@4.5.0)
+  '@aura-group/aura-desigin':
+    specifier: ^0.0.4
+    version: 0.0.4
   '@vite-pwa/astro':
     specifier: ^0.1.4
     version: 0.1.4(astro@3.4.2)(vite-plugin-pwa@0.16.6)
@@ -255,6 +258,13 @@ packages:
       which-pm-runs: 1.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@aura-group/aura-desigin@0.0.4:
+    resolution: {integrity: sha512-jDsLYa5rWVR2o38+6NtweXqPUVOk9SoXWSWFGjFi+VGbkFZARm/FgpB7SF4rfrNP212K2AXyjhjEXN+uUQtORg==}
+    dependencies:
+      solid-element: 1.8.0(solid-js@1.8.5)
+      solid-js: 1.8.5
     dev: false
 
   /@babel/code-frame@7.22.13:
@@ -3276,6 +3286,10 @@ packages:
   /common-tags@1.8.2:
     resolution: {integrity: sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==}
     engines: {node: '>=4.0.0'}
+    dev: false
+
+  /component-register@0.8.3:
+    resolution: {integrity: sha512-/0u8ov0WPWi2FL78rgB9aFOcfY8pJT4jP/l9NTOukGNLVQ6hk35sEJE1RkEnNQU3yk48Qr7HlDQjRQKEVfgeWg==}
     dev: false
 
   /concat-map@0.0.1:
@@ -6948,6 +6962,15 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
     dev: true
+
+  /solid-element@1.8.0(solid-js@1.8.5):
+    resolution: {integrity: sha512-DG8HBCej5kNExUiFbVG8OFZojMGcLF8keXdGLEcHXBYtJ7zhm+a8HJnl5lfmBlTYGRk4ApgoBvlwH1ibg7quaQ==}
+    peerDependencies:
+      solid-js: ^1.8.0
+    dependencies:
+      component-register: 0.8.3
+      solid-js: 1.8.5
+    dev: false
 
   /solid-js@1.8.5:
     resolution: {integrity: sha512-xvtJvzJzWbsn35oKFhW9kNwaxG1Z/YLMsDp4tLVcYZTMPzvzQ8vEZuyDQ6nt7xDArVgZJ7TUFrJUwrui/oq53A==}

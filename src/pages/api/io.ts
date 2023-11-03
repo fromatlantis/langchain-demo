@@ -9,6 +9,7 @@ import type { APIRoute } from 'astro';
 import { OPENAI_API_KEY } from '~/config';
 
 export const post: APIRoute = async ({ params, request }) => {
+    const body = await request.json();
     const outputParser = StructuredOutputParser.fromZodSchema(
         z
             .array(
@@ -45,7 +46,7 @@ export const post: APIRoute = async ({ params, request }) => {
     });
 
     const result = await answerFormattingChain.call({
-        query: 'List 5 countries.',
+        query: body.prompt,
     });
     return new Response(JSON.stringify(result.records), {
         status: 200,

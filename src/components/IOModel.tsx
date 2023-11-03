@@ -36,7 +36,7 @@ const IOModel = () => {
             <Show when={loading()}>
                 <LoadingMask />
             </Show>
-            <div class="w-full flex">
+            <div class="w-full flex m-b-6">
                 <ar-textarea
                     class="flex-1"
                     value={prompt()}

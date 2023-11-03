@@ -6,6 +6,10 @@
       "source.fixAll.stylelint": true,
       "source.fixAll": true
     },
+    "prettier.documentSelectors": ["**/*.astro"],
+    "[astro]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "stylelint.validate": ["css", "scss", "html", "vue", "astro"],
     "eslint.validate": [
       "javascript",
@@ -15,7 +19,7 @@
       "html",
       "vue",
       "astro"
-    ],
+    ]
     // "deno.enable": true
   }
   

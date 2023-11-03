@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "eslint": "^8.52.0",
-    "eslint-config-aurai": "^0.0.1"
+    "eslint-config-aurai": "^0.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.1"
   }
 }

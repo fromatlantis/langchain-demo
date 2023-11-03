@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import IOModel from '~/components/IOModel';
+import iopng from '~/assets/io.png';
 ---
 
 <Layout title="Model I/O">
+    <img src={iopng.src} alt="iopng">
     <IOModel client:only="solid-js"/>
 </Layout>

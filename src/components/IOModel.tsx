@@ -63,6 +63,7 @@ const IOModel = () => {
                             <tr>
                                 <td>{country.Name}</td>
                                 <td>{country.Capital}</td>
+                                <td>{country.Number}</td>
                             </tr>
                         )}
                     </For>

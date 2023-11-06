@@ -53,14 +53,16 @@ const IOModel = () => {
                         <tr>
                             <td class="border b-solid b-gray-3 p3 bg-gray text-center ">国家名称</td>
                             <td class="border b-solid b-gray-3 p3 bg-gray text-center ">国家首都</td>
-                            <td class="border b-solid b-gray-3 bg-gray text-center ">值</td>
+                            <td class="border b-solid b-gray-3 bg-gray text-center ">面积</td>
+                            <td class="border b-solid b-gray-3 bg-gray text-center ">人口</td>
                         </tr>
                         <For each={countries()}>
                             {(country) => (
                                 <tr>
                                     <td class="border b-solid b-gray-3 p3">{country.Name}</td>
                                     <td class="border b-solid b-gray-3 p3">{country.Capital}</td>
-                                    <td class="border b-solid b-gray-3 p3">{country.Number}</td>
+                                    <td class="border b-solid b-gray-3 p3">{country.Area}</td>
+                                    <td class="border b-solid b-gray-3 p3">{country.Population}</td>
                                 </tr>
                             )}
                         </For>

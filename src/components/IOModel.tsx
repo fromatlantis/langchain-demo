@@ -50,20 +50,21 @@ const IOModel = () => {
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">Countries Demo</th>
+                        <th class="border b-gray p3 bg-gray" colspan="2">Countries Demo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>国家名称</td>
-                        <td>国家首都</td>
+                        <td class="border b-gray p3">国家名称</td>
+                        <td class="border b-gray p3">国家首都</td>
+                        <td class="border b-gray">值</td>
                     </tr>
                     <For each={countries()}>
                         {(country) => (
                             <tr>
-                                <td>{country.Name}</td>
-                                <td>{country.Capital}</td>
-                                <td>{country.Number}</td>
+                                <td class="border b-gray p3">{country.Name}</td>
+                                <td class="border b-gray p3">{country.Capital}</td>
+                                <td class="border b-gray p3">{country.Number}</td>
                             </tr>
                         )}
                     </For>

@@ -47,7 +47,7 @@ const IOModel = () => {
                     <ar-icon name="send"></ar-icon>
                 </ar-button>
             </div>
-            <table>
+            <table class="border-collapse">
                 <thead>
                     <tr>
                         <th class="border b-solid b-gray p3 bg-gray-6" colspan="3">Countries Demo</th>

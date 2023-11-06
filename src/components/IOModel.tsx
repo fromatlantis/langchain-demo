@@ -51,9 +51,9 @@ const IOModel = () => {
                 <table class="border-collapse">
                     <tbody>
                         <tr>
-                            <td class="border b-solid b-gray p3 bg-gray text-center ">国家名称</td>
-                            <td class="border b-solid b-gray p3 bg-gray text-center ">国家首都</td>
-                            <td class="border b-solid b-gray bg-gray text-center ">值</td>
+                            <td class="border b-solid b-gray-3 p3 bg-gray text-center ">国家名称</td>
+                            <td class="border b-solid b-gray-3 p3 bg-gray text-center ">国家首都</td>
+                            <td class="border b-solid b-gray-3 bg-gray text-center ">值</td>
                         </tr>
                         <For each={countries()}>
                             {(country) => (

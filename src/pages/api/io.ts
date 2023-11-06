@@ -16,7 +16,7 @@ export const post: APIRoute = async ({ params, request }) => {
                 z.object({
                     Name: z.string().describe('The name of the country'),
                     Capital: z.string().describe("The country's capital"),
-                    Number: z.string().describe("The country's area"),
+                    Number: z.number().describe("The country's area"),
                     // Number: z.number().describe("The population of this country"), prompt: 请列举5个国家 | 请列举人口数量最多的5个国家
                 }),
             )

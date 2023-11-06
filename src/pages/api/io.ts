@@ -16,7 +16,8 @@ export const post: APIRoute = async ({ params, request }) => {
                 z.object({
                     Name: z.string().describe('The name of the country'),
                     Capital: z.string().describe("The country's capital"),
-                    Haha: z.number()
+                    Number: z.number(),
+                    People: z.number()
                 }),
             )
             .describe('An array of Airtable records, each representing a country'),

@@ -14,7 +14,7 @@ import { OPENAI_API_KEY } from '~/config';
 export const post: APIRoute = async ({ params, request }) => {
     const body = await request.json();
     // 从静态网页加载文档
-    const loader = new CheerioWebBaseLoader('https://lilianweng.github.io/posts/2023-06-23-agent/');
+    const loader = new CheerioWebBaseLoader(body.url);
     const data = await loader.load();
     // 文档分割
     const textSplitter = new RecursiveCharacterTextSplitter({

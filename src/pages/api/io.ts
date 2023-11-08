@@ -26,7 +26,7 @@ export const post: APIRoute = async ({ params, request }) => {
     );
 
     const chatModel = new ChatOpenAI({
-        openAIApiKey: OPENAI_API_KEY,
+        // openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
         temperature: 0, // For best results with the output fixing parser
     });

@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AIChat from '~/components/AIChat';
+---
+
+<Layout title="Retrieval QA">
+    <div class="h-full w-70% m-x-auto p-y-9 box-border flex flex-col gap-y-6 justify-center items-center">
+        <AIChat client:only="solid-js" />
+    </div>
+</Layout>

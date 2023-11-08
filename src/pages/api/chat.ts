@@ -14,7 +14,9 @@ export const post: APIRoute = async ({ params, request }) => {
     });
 
     const result = await model.call(body.prompt);
-    return new Response(result, {
+    return new Response(JSON.stringify({
+      text: result
+    }), {
         status: 200,
         headers: {
             'Content-Type': 'application/json',

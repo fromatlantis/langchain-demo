@@ -18,8 +18,8 @@ export const post: APIRoute = async ({ params, request }) => {
     const data = await loader.load();
     // 文档分割
     const textSplitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 500,
-        chunkOverlap: 0,
+        chunkSize: 1000,
+        chunkOverlap: 200,
     });
     const splitDocs = await textSplitter.splitDocuments(data);
     // 嵌入并存储在向量数据库

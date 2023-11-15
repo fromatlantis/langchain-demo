@@ -9,11 +9,9 @@ export const post: APIRoute = async ({ params, request }) => {
     const body = await request.json();
     const decoder = new TextDecoder('utf-8');
     console.log('fetch txt')
-    const res = await fetch('https://langchain.deno.dev/state_of_the_union_zh.txt').catch((err)=> {
-      console.log(err)
-    })
+    const res = await fetch('https://langchain.deno.dev/state_of_the_union_zh.txt')
     // const text = await res.text();
-    console.log(res)
+    console.log(res.text())
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo

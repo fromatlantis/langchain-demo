@@ -1,6 +1,5 @@
 import { createSignal, For, Show } from 'solid-js';
 import LoadingMask from './LoadingMask';
-import text from '~/assets/state_of_the_union_zh.txt';
 
 const Summary = () => {
     const [answer, setAnswer] = createSignal('');
@@ -33,7 +32,9 @@ const Summary = () => {
                 <LoadingMask />
             </Show>
             <div class="w-full flex items-center gap-y3 m-b-6">
-                <a href={text}>2020年美国国情咨文state_of_the_union_zh.txt</a>
+                <a href="/api/state_of_the_union_zh.txt" target="_blank">
+                    2020年美国国情咨文state_of_the_union_zh.txt
+                </a>
                 <ar-button onClick={handleSend}>
                     <ar-icon name="send"></ar-icon>
                 </ar-button>

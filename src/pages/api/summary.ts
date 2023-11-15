@@ -7,7 +7,7 @@ import type { APIRoute } from 'astro';
 import { OPENAI_API_KEY } from '~/config';
 
 export const post: APIRoute = async ({ params, request }) => {
-    const loader = new CheerioWebBaseLoader("https://langchain.deno.dev/state_of_the_union_zh.txt");
+    const loader = new CheerioWebBaseLoader("https://mp.weixin.qq.com/s/cI8iTflC3YO_g5ZIIqP2YQ");
     const docs = await loader.load();
     console.log(docs)
     const model = new OpenAI({

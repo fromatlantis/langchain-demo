@@ -31,7 +31,7 @@ const Summary = () => {
             <Show when={loading()}>
                 <LoadingMask />
             </Show>
-            <div class="w-full flex items-center gap-y3 m-b-6">
+            <div class="w-full flex items-center gap-y-3 m-b-6">
                 <a href="/api/state_of_the_union_zh.txt" target="_blank">
                     2020年美国国情咨文state_of_the_union_zh.txt
                 </a>

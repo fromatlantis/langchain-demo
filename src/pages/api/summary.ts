@@ -5,12 +5,9 @@ import type { APIRoute } from 'astro';
 
 import { OPENAI_API_KEY } from '~/config';
 
+import text from '~/assets/state_of_the_union_zh.txt'
+
 export const post: APIRoute = async ({ params, request }) => {
-    const body = await request.json();
-    const decoder = new TextDecoder('utf-8');
-    console.log('fetch txt')
-    const res = await fetch('https://langchain.deno.dev/state_of_the_union_zh.txt')
-    const text = await res.text();
     console.log(text)
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
@@ -22,7 +19,7 @@ export const post: APIRoute = async ({ params, request }) => {
         combineDocumentsChain: combineDocsChain,
     });
     const result = await chain.call({
-        input_document: '',
+        input_document: text,
     });
     return new Response(
         JSON.stringify({

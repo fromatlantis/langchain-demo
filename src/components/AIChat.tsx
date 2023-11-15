@@ -26,8 +26,8 @@ const AIChat = () => {
                 prompt: prompt(),
             }),
         });
-        console.log(response)
         const result = await response.json();
+        console.log(result);
         setAnswer(result?.text);
         setLoading(false);
     };

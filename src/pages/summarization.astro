@@ -1,13 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import IOModel from '~/components/IOModel';
-import iopng from '~/assets/io.png';
+import Summary from '~/components/Summary';
 ---
 
 <Layout title="Summarization">
     <div
         class="h-full w-70% m-x-auto p-y-9 box-border flex flex-col gap-y-6 justify-center items-center"
     >
-        <IOModel client:only="solid-js" />
+        <Summary client:only="solid-js" />
     </div>
 </Layout>

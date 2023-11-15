@@ -1,19 +1,15 @@
 import { OpenAI } from 'langchain/llms/openai';
 import { loadSummarizationChain, AnalyzeDocumentChain } from 'langchain/chains';
-import { readFileStr } from 'https://deno.land/std/fs/mod.ts';
 
 import type { APIRoute } from 'astro';
 
 import { OPENAI_API_KEY } from '~/config';
 
-async function readLocalFile(filePath: string): Promise<string> {
-    const fileData = await readFileStr(filePath);
-    return fileData;
-}
 
 export const post: APIRoute = async ({ params, request }) => {
     const body = await request.json();
-    const text = await readLocalFile('./state_of_the_union_zh.txt');
+    const decoder = new TextDecoder("utf-8");
+    const text = decoder.decode(await Deno.readFile("./state_of_the_union_zh.txt"));
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo

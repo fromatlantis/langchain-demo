@@ -6,8 +6,6 @@ import type { APIRoute } from 'astro';
 
 import { OPENAI_API_KEY } from '~/config';
 
-import url from '~/assets/state_of_the_union_zh.txt'
-
 export const post: APIRoute = async ({ params, request }) => {
     const loader = new CheerioWebBaseLoader("https://langchain.deno.dev/state_of_the_union_zh.txt");
     const docs = await loader.load();

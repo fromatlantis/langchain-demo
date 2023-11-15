@@ -21,7 +21,7 @@ export const post: APIRoute = async ({ params, request }) => {
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
         temperature: 0, // For best results with the output fixing parser
     });
-    const chain = loadSummarizationChain(model);
+    const chain = loadSummarizationChain(model, { type: "map_reduce" });
     // const chain = new AnalyzeDocumentChain({
     //     combineDocumentsChain: combineDocsChain,
     // });

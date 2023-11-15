@@ -1,17 +1,17 @@
 import { OpenAI } from 'langchain/llms/openai';
 import { loadSummarizationChain, AnalyzeDocumentChain } from 'langchain/chains';
+import { TextLoader } from "langchain/document_loaders/fs/text";
 
 import type { APIRoute } from 'astro';
 
 import { OPENAI_API_KEY } from '~/config';
 
-import txt from '~/assets/state_of_the_union_zh.txt'
+import url from '~/assets/state_of_the_union_zh.txt'
 
 export const post: APIRoute = async ({ params, request }) => {
-    const url = new URL(txt, import.meta.url);
-    console.log(url)
-    const decoder = new TextDecoder("utf-8");
-    const text = decoder.decode(await Deno.readFile(url));
+    const loader = new TextLoader(url);
+    const docs = await loader.load();
+    console.log(docs)
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
@@ -22,7 +22,7 @@ export const post: APIRoute = async ({ params, request }) => {
         combineDocumentsChain: combineDocsChain,
     });
     const result = await chain.call({
-        input_document: text,
+        input_document: docs,
     });
     return new Response(
         JSON.stringify({

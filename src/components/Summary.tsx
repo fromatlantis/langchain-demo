@@ -22,7 +22,11 @@ const Summary = () => {
             }),
         });
         const result = await response.json();
-        setAnswer(result?.text);
+        if (result.error) {
+            setAnswer(result.error.message);
+        } else {
+            setAnswer(result.text);
+        }
         setLoading(false);
     };
 

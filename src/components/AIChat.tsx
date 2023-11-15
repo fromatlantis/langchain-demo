@@ -27,8 +27,11 @@ const AIChat = () => {
             }),
         });
         const result = await response.json();
-        console.log(result);
-        setAnswer(result?.text);
+        if (result.error) {
+            setAnswer(result.error.message);
+        } else {
+            setAnswer(result.text);
+        }
         setLoading(false);
     };
 

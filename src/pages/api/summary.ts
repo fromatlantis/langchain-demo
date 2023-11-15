@@ -9,13 +9,13 @@ import { OPENAI_API_KEY } from '~/config';
 
 export const post: APIRoute = async ({ params, request }) => {
     const loader = new CheerioWebBaseLoader('https://mp.weixin.qq.com/s/cI8iTflC3YO_g5ZIIqP2YQ');
-    const docs = await loader.load();
+    // const docs = await loader.load();
     // 文档分割
     const textSplitter = new RecursiveCharacterTextSplitter({
         chunkSize: 1000,
         chunkOverlap: 200,
     });
-    const splitDocs = await textSplitter.splitDocuments(docs);
+    const docs = await textSplitter.createDocuments(['hello world']);
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
@@ -26,7 +26,7 @@ export const post: APIRoute = async ({ params, request }) => {
     //     combineDocumentsChain: combineDocsChain,
     // });
     const result = await chain.call({
-        input_document: splitDocs,
+        input_document: docs,
     });
     return new Response(
         JSON.stringify({

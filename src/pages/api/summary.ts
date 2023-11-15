@@ -7,8 +7,9 @@ import { OPENAI_API_KEY } from '~/config';
 
 export const post: APIRoute = async ({ params, request }) => {
     const body = await request.json();
-    const decoder = new TextDecoder("utf-8");
-    const text = decoder.decode(await Deno.readFile('/state_of_the_union_zh.txt'));
+    const decoder = new TextDecoder('utf-8');
+    const res = await fetch('/state_of_the_union_zh.txt');
+    const text = await res.text();
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
@@ -16,10 +17,10 @@ export const post: APIRoute = async ({ params, request }) => {
     });
     const combineDocsChain = loadSummarizationChain(model);
     const chain = new AnalyzeDocumentChain({
-      combineDocumentsChain: combineDocsChain,
+        combineDocumentsChain: combineDocsChain,
     });
     const result = await chain.call({
-      input_document: text,
+        input_document: text,
     });
     return new Response(
         JSON.stringify({

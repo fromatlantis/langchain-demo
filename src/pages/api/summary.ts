@@ -8,8 +8,10 @@ import { OPENAI_API_KEY } from '~/config';
 import txt from '~/assets/state_of_the_union_zh.txt'
 
 export const post: APIRoute = async ({ params, request }) => {
+    const url = new URL(txt, import.meta.url);
+    console.log(url)
     const decoder = new TextDecoder("utf-8");
-    const text = decoder.decode(await Deno.readFile(txt));
+    const text = decoder.decode(await Deno.readFile(url));
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo

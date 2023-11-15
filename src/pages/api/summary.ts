@@ -5,11 +5,13 @@ import type { APIRoute } from 'astro';
 
 import { OPENAI_API_KEY } from '~/config';
 
+import file from '~/assets/state_of_the_union_zh.txt';
+
 
 export const post: APIRoute = async ({ params, request }) => {
     const body = await request.json();
     const decoder = new TextDecoder("utf-8");
-    const text = decoder.decode(await Deno.readFile("./state_of_the_union_zh.txt"));
+    const text = decoder.decode(await Deno.readFile(file));
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,
         modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo

@@ -32,8 +32,8 @@ const Summary = () => {
             <Show when={loading()}>
                 <LoadingMask />
             </Show>
-            <div class="w-full flex m-b-6">
-                <a href={text}>state_of_the_union_zh.txt</a>
+            <div class="w-full flex items-center gap-y3 m-b-6">
+                <a href={text}>2020年美国国情咨文state_of_the_union_zh.txt</a>
                 <ar-button onClick={handleSend}>
                     <ar-icon name="send"></ar-icon>
                 </ar-button>

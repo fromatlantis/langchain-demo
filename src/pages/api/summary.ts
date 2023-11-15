@@ -37,8 +37,8 @@ export const POST: APIRoute = async ({ params, request }) => {
         const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
         const docs = await textSplitter.createDocuments([text]);
         const chain = loadSummarizationChain(model, {
-            type: 'stuff',
-            prompt: SUMMARY_PROMPT,
+            type: 'refine',
+            questionPrompt: SUMMARY_PROMPT,
         });
         const result = await chain.call({
             input_documents: docs,

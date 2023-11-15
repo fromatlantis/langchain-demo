@@ -17,9 +17,6 @@ const Summary = () => {
                 'User-Agent': 'custom/non-standard',
             },
             method: 'POST',
-            body: JSON.stringify({
-                prompt: prompt(),
-            }),
         });
         const result = await response.json();
         if (result.error) {
@@ -35,15 +32,13 @@ const Summary = () => {
             <Show when={loading()}>
                 <LoadingMask />
             </Show>
-            <div class="w-full flex items-center gap-y-3 m-b-6">
+            <div class="w-full flex items-center gap-x-3 m-b-6">
                 <a href="/api/state_of_the_union_zh.txt" target="_blank">
                     2020年美国国情咨文state_of_the_union_zh.txt
                 </a>
-                <ar-button onClick={handleSend}>
-                    <ar-icon name="send"></ar-icon>
-                </ar-button>
+                <ar-button onClick={handleSend}>生成摘要</ar-button>
             </div>
-            {answer()}
+            <pre>{answer()}</pre>
         </div>
     );
 };

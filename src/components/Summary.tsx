@@ -22,7 +22,7 @@ const Summary = () => {
         if (result.error) {
             setAnswer(result.error.message);
         } else {
-            setAnswer(result.text);
+            setAnswer(result.text || result.output_text);
         }
         setLoading(false);
     };
@@ -33,7 +33,7 @@ const Summary = () => {
                 <LoadingMask />
             </Show>
             <div class="w-full flex items-center gap-x-3 m-b-6">
-                <a href="/api/state_of_the_union_zh.txt" target="_blank">
+                <a href="/state_of_the_union_zh.txt" target="_blank">
                     2020年美国国情咨文state_of_the_union_zh.txt
                 </a>
                 <ar-button onClick={handleSend}>生成摘要</ar-button>

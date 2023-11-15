@@ -8,7 +8,7 @@ import { OPENAI_API_KEY } from '~/config';
 export const post: APIRoute = async ({ params, request }) => {
     const body = await request.json();
     const decoder = new TextDecoder('utf-8');
-    const res = await fetch('/state_of_the_union_zh.txt');
+    const res = await fetch('https://langchain.deno.dev/state_of_the_union_zh.txt');
     const text = await res.text();
     const model = new OpenAI({
         openAIApiKey: OPENAI_API_KEY,

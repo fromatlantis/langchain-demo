@@ -17,12 +17,12 @@ export default defineConfig({
         AstroPWA({
             base: '/',
             scope: '/',
-            includeAssets: ['favicon.svg', 'sam/sam_onnx_quantized_example.onnx'],
+            includeAssets: ['favicon.svg'],
             registerType: 'autoUpdate',
             manifest: {
-                name: 'Idou',
+                name: 'LangChain',
                 lang: 'zh-cn',
-                short_name: 'Idou',
+                short_name: 'LangChain',
                 background_color: '#f6f8fa',
                 icons: [
                     {

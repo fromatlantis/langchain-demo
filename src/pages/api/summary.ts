@@ -5,10 +5,11 @@ import type { APIRoute } from 'astro';
 
 import { OPENAI_API_KEY } from '~/config';
 
+const url = new URL('../../../state_of_the_union_zh.txt', import.meta.url);
+
 
 export const post: APIRoute = async ({ params, request }) => {
     const body = await request.json();
-    const url = new URL('./state_of_the_union_zh.txt', import.meta.url);
     const decoder = new TextDecoder("utf-8");
     const text = decoder.decode(await Deno.readFile(url));
     const model = new OpenAI({

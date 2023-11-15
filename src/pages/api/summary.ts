@@ -24,7 +24,7 @@ export const post: APIRoute = async ({ params, request }) => {
         combineDocumentsChain: combineDocsChain,
     });
     const result = await chain.call({
-        input_document: text,
+        input_document: '',
     });
     return new Response(
         JSON.stringify({

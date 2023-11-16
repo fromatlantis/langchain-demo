@@ -3,4 +3,4 @@ export const OPENAI_API_KEY =
     typeof Deno !== 'undefined'
         ? // @ts-ignore
           Deno?.env.get('OPENAI_API_KEY')
-        : '';
+        : import.meta.env.OPENAI_API_KEY ?? '';

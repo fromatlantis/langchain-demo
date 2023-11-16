@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel/edge';
 import node from '@astrojs/node';
 import deno from '@astrojs/deno';
 
@@ -7,10 +8,21 @@ import UnoCSS from 'unocss/astro';
 
 import AstroPWA from '@vite-pwa/astro';
 
+const adapter = () => {
+    if (process.env.VERCEL) {
+        return vercel();
+    } else if (process.env.Deno) {
+        return deno();
+    } else {
+        return node({
+            mode: 'standalone',
+        });
+    }
+};
 // https://astro.build/config
 export default defineConfig({
     output: 'server',
-    adapter: deno(),
+    adapter,
     integrations: [
         UnoCSS(),
         solid(),

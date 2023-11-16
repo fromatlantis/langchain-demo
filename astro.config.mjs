@@ -11,7 +11,7 @@ import AstroPWA from '@vite-pwa/astro';
 const adapter = () => {
     if (process.env.VERCEL) {
         return vercel();
-    } else if (process.env.Deno) {
+    } else if (typeof Deno !== 'undefined') {
         return deno();
     } else {
         return node({

@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/edge';
+import vercel from '@astrojs/vercel/serverless';
 import node from '@astrojs/node';
 import deno from '@astrojs/deno';
 
@@ -22,7 +22,7 @@ const adapter = () => {
 // https://astro.build/config
 export default defineConfig({
     output: 'server',
-    adapter,
+    adapter: adapter(),
     integrations: [
         UnoCSS(),
         solid(),

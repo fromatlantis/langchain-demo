@@ -24,7 +24,6 @@ const RetrievalQA = () => {
         const response = await fetch(`/api/qa`, {
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'custom/non-standard',
             },
             method: 'POST',
             body: JSON.stringify({

@@ -14,7 +14,6 @@ const Summary = () => {
         const response = await fetch(`/api/summary`, {
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'custom/non-standard',
             },
             method: 'POST',
         });

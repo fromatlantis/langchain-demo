@@ -19,7 +19,6 @@ const AIChat = () => {
         const response = await fetch(`/api/chat`, {
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'custom/non-standard',
             },
             method: 'POST',
             body: JSON.stringify({

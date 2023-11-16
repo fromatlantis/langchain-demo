@@ -19,7 +19,6 @@ const IOModel = () => {
         const response = await fetch(`/api/io`, {
             headers: {
                 'Content-Type': 'application/json',
-                'User-Agent': 'custom/non-standard',
             },
             method: 'POST',
             body: JSON.stringify({

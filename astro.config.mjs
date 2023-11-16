@@ -9,15 +9,16 @@ import UnoCSS from 'unocss/astro';
 import AstroPWA from '@vite-pwa/astro';
 
 const adapter = () => {
-    if (process.env.VERCEL) {
-        return vercel();
-    } else if (typeof Deno !== 'undefined') {
-        return deno();
-    } else {
-        return node({
-            mode: 'standalone',
-        });
-    }
+    // if (process.env.VERCEL) {
+    //     return vercel();
+    // } else if (typeof Deno !== 'undefined') {
+    //     return deno();
+    // } else {
+    //     return node({
+    //         mode: 'standalone',
+    //     });
+    // }
+    return deno();
 };
 // https://astro.build/config
 export default defineConfig({

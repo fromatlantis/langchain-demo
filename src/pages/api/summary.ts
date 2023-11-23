@@ -10,7 +10,7 @@ import { OPENAI_API_KEY } from '~/config';
 
 export const POST: APIRoute = async ({ params, request }) => {
     try {    
-        console.log(process.env.Deno)
+        console.log(process.env)
         // const loader = new CheerioWebBaseLoader('https://mp.weixin.qq.com/s/cI8iTflC3YO_g5ZIIqP2YQ');
         // const docs = await loader.load();
         // // 文档分割

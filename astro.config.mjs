@@ -11,12 +11,12 @@ import AstroPWA from '@vite-pwa/astro';
 const adapter = () => {
     if (process.env.VERCEL) {
         return vercel();
-    } else if(process.env.Deno) {
-        return deno();
+    } else if(process.env.Node) {
+        // return node({
+        //     mode: 'standalone',
+        // })
     } else {
-        return node({
-            mode: 'standalone',
-        })
+        return deno();
     }
 };
 // https://astro.build/config

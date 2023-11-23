@@ -225,10 +225,11 @@ export const POST: APIRoute = async ({ params, request }) => {
         The United States of America. 
         
         May God bless you all. May God protect our troops.`;
-        const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
+        const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 3000 });
         const docs = await textSplitter.createDocuments([text]);
         const chain = loadSummarizationChain(model, {
-            type: 'map_reduce',
+            type: 'refine',
+            questionPrompt: SUMMARY_PROMPT
         });
         const result = await chain.call({
             input_documents: docs,

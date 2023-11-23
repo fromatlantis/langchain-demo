@@ -9,8 +9,7 @@ import type { APIRoute } from 'astro';
 import { OPENAI_API_KEY } from '~/config';
 
 export const POST: APIRoute = async ({ params, request }) => {
-    try {    
-        console.log(process.env)
+    try {
         // const loader = new CheerioWebBaseLoader('https://mp.weixin.qq.com/s/cI8iTflC3YO_g5ZIIqP2YQ');
         // const docs = await loader.load();
         // // 文档分割
@@ -760,8 +759,7 @@ export const POST: APIRoute = async ({ params, request }) => {
         const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
         const docs = await textSplitter.createDocuments([text]);
         const chain = loadSummarizationChain(model, {
-            type: 'stuff',
-            prompt: SUMMARY_PROMPT,
+            type: 'map_reduce',
         });
         const result = await chain.call({
             input_documents: docs,

@@ -10,6 +10,7 @@ import { OPENAI_API_KEY } from '~/config';
 
 export const POST: APIRoute = async ({ params, request }) => {
     try {    
+        console.log(process.env.Deno)
         // const loader = new CheerioWebBaseLoader('https://mp.weixin.qq.com/s/cI8iTflC3YO_g5ZIIqP2YQ');
         // const docs = await loader.load();
         // // 文档分割
@@ -759,8 +760,8 @@ export const POST: APIRoute = async ({ params, request }) => {
         const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
         const docs = await textSplitter.createDocuments([text]);
         const chain = loadSummarizationChain(model, {
-            type: 'refine',
-            questionPrompt: SUMMARY_PROMPT,
+            type: 'stuff',
+            prompt: SUMMARY_PROMPT,
         });
         const result = await chain.call({
             input_documents: docs,

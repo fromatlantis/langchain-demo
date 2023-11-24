@@ -31,9 +31,11 @@ const RetrievalQA = () => {
                 prompt: prompt(),
             }),
         });
-        const result = await response.json();
-        setAnswer(result?.text);
-        setLoading(false);
+        const data = response.body;
+        console.log(data)
+        // const result = await response.json();
+        // setAnswer(result?.text);
+        // setLoading(false);
     };
 
     return (

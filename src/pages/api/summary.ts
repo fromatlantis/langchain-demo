@@ -10,6 +10,10 @@ import { OPENAI_API_KEY } from '~/config';
 
 export const POST: APIRoute = async ({ params, request }) => {
     try {
+        
+        // @ts-ignore
+        console.log(Deno?.env.get('DENO_REGION'))
+        
         // const loader = new CheerioWebBaseLoader('https://mp.weixin.qq.com/s/cI8iTflC3YO_g5ZIIqP2YQ');
         // const docs = await loader.load();
         // // 文档分割
@@ -33,203 +37,12 @@ export const POST: APIRoute = async ({ params, request }) => {
             --------
         `;
         const SUMMARY_PROMPT = PromptTemplate.fromTemplate(summaryTemplate);
-        const text = `Madam Speaker, Madam Vice President, our First Lady and Second Gentleman. Members of Congress and the Cabinet. Justices of the Supreme Court. My fellow Americans.  
-
-        Last year COVID-19 kept us apart. This year we are finally together again. 
-        
-        Tonight, we meet as Democrats Republicans and Independents. But most importantly as Americans. 
-        
-        With a duty to one another to the American people to the Constitution. 
-        
-        And with an unwavering resolve that freedom will always triumph over tyranny. 
-        
-        Six days ago, Russia’s Vladimir Putin sought to shake the foundations of the free world thinking he could make it bend to his menacing ways. But he badly miscalculated. 
-        
-        He thought he could roll into Ukraine and the world would roll over. Instead he met a wall of strength he never imagined. 
-        
-        He met the Ukrainian people. 
-        
-        From President Zelenskyy to every Ukrainian, their fearlessness, their courage, their determination, inspires the world. 
-        
-        Groups of citizens blocking tanks with their bodies. Everyone from students to retirees teachers turned soldiers defending their homeland. 
-        
-        In this struggle as President Zelenskyy said in his speech to the European Parliament “Light will win over darkness.” The Ukrainian Ambassador to the United States is here tonight. 
-        
-        Let each of us here tonight in this Chamber send an unmistakable signal to Ukraine and to the world. 
-        
-        Please rise if you are able and show that, Yes, we the United States of America stand with the Ukrainian people. 
-        
-        Throughout our history we’ve learned this lesson when dictators do not pay a price for their aggression they cause more chaos.   
-        
-        They keep moving.   
-        
-        And the costs and the threats to America and the world keep rising.   
-        
-        That’s why the NATO Alliance was created to secure peace and stability in Europe after World War 2. 
-        
-        The United States is a member along with 29 other nations. 
-        
-        It matters. American diplomacy matters. American resolve matters. 
-        
-        Putin’s latest attack on Ukraine was premeditated and unprovoked. 
-        
-        He rejected repeated efforts at diplomacy. 
-        
-        He thought the West and NATO wouldn’t respond. And he thought he could divide us at home. Putin was wrong. We were ready.  Here is what we did.   
-        
-        We prepared extensively and carefully. 
-        
-        We spent months building a coalition of other freedom-loving nations from Europe and the Americas to Asia and Africa to confront Putin. 
-        
-        I spent countless hours unifying our European allies. We shared with the world in advance what we knew Putin was planning and precisely how he would try to falsely justify his aggression.  
-        
-        We countered Russia’s lies with truth.   
-        
-        And now that he has acted the free world is holding him accountable. 
-        
-        Along with twenty-seven members of the European Union including France, Germany, Italy, as well as countries like the United Kingdom, Canada, Japan, Korea, Australia, New Zealand, and many others, even Switzerland. 
-        
-        We are inflicting pain on Russia and supporting the people of Ukraine. Putin is now isolated from the world more than ever. 
-        
-        Together with our allies –we are right now enforcing powerful economic sanctions. 
-        
-        We are cutting off Russia’s largest banks from the international financial system.  
-        
-        Preventing Russia’s central bank from defending the Russian Ruble making Putin’s $630 Billion “war fund” worthless.   
-        
-        We are choking off Russia’s access to technology that will sap its economic strength and weaken its military for years to come.  
-        
-        Tonight I say to the Russian oligarchs and corrupt leaders who have bilked billions of dollars off this violent regime no more. 
-        
-        The U.S. Department of Justice is assembling a dedicated task force to go after the crimes of Russian oligarchs.  
-        
-        We are joining with our European allies to find and seize your yachts your luxury apartments your private jets. We are coming for your ill-begotten gains. 
-        
-        And tonight I am announcing that we will join our allies in closing off American air space to all Russian flights – further isolating Russia – and adding an additional squeeze –on their economy. The Ruble has lost 30% of its value. 
-        
-        The Russian stock market has lost 40% of its value and trading remains suspended. Russia’s economy is reeling and Putin alone is to blame. 
-        
-        Together with our allies we are providing support to the Ukrainians in their fight for freedom. Military assistance. Economic assistance. Humanitarian assistance. 
-        
-        We are giving more than $1 Billion in direct assistance to Ukraine. 
-        
-        And we will continue to aid the Ukrainian people as they defend their country and to help ease their suffering.  
-        
-        A cancer that would put them in a flag-draped coffin. 
-        
-        I know. 
-        
-        One of those soldiers was my son Major Beau Biden. 
-        
-        We don’t know for sure if a burn pit was the cause of his brain cancer, or the diseases of so many of our troops. 
-        
-        But I’m committed to finding out everything we can. 
-        
-        Committed to military families like Danielle Robinson from Ohio. 
-        
-        The widow of Sergeant First Class Heath Robinson.  
-        
-        He was born a soldier. Army National Guard. Combat medic in Kosovo and Iraq. 
-        
-        Stationed near Baghdad, just yards from burn pits the size of football fields. 
-        
-        Heath’s widow Danielle is here with us tonight. They loved going to Ohio State football games. He loved building Legos with their daughter. 
-        
-        But cancer from prolonged exposure to burn pits ravaged Heath’s lungs and body. 
-        
-        Danielle says Heath was a fighter to the very end. 
-        
-        He didn’t know how to stop fighting, and neither did she. 
-        
-        Through her pain she found purpose to demand we do better. 
-        
-        Tonight, Danielle—we are. 
-        
-        The VA is pioneering new ways of linking toxic exposures to diseases, already helping more veterans get benefits. 
-        
-        And tonight, I’m announcing we’re expanding eligibility to veterans suffering from nine respiratory cancers. 
-        
-        I’m also calling on Congress: pass a law to make sure veterans devastated by toxic exposures in Iraq and Afghanistan finally get the benefits and comprehensive health care they deserve. 
-        
-        And fourth, let’s end cancer as we know it. 
-        
-        This is personal to me and Jill, to Kamala, and to so many of you. 
-        
-        Cancer is the #2 cause of death in America–second only to heart disease. 
-        
-        Last month, I announced our plan to supercharge  
-        the Cancer Moonshot that President Obama asked me to lead six years ago. 
-        
-        Our goal is to cut the cancer death rate by at least 50% over the next 25 years, turn more cancers from death sentences into treatable diseases.  
-        
-        More support for patients and families. 
-        
-        To get there, I call on Congress to fund ARPA-H, the Advanced Research Projects Agency for Health. 
-        
-        It’s based on DARPA—the Defense Department project that led to the Internet, GPS, and so much more.  
-        
-        ARPA-H will have a singular purpose—to drive breakthroughs in cancer, Alzheimer’s, diabetes, and more. 
-        
-        A unity agenda for the nation. 
-        
-        We can do this. 
-        
-        My fellow Americans—tonight , we have gathered in a sacred space—the citadel of our democracy. 
-        
-        In this Capitol, generation after generation, Americans have debated great questions amid great strife, and have done great things. 
-        
-        We have fought for freedom, expanded liberty, defeated totalitarianism and terror. 
-        
-        And built the strongest, freest, and most prosperous nation the world has ever known. 
-        
-        Now is the hour. 
-        
-        Our moment of responsibility. 
-        
-        Our test of resolve and conscience, of history itself. 
-        
-        It is in this moment that our character is formed. Our purpose is found. Our future is forged. 
-        
-        Well I know this nation.  
-        
-        We will meet the test. 
-        
-        To protect freedom and liberty, to expand fairness and opportunity. 
-        
-        We will save democracy. 
-        
-        As hard as these times have been, I am more optimistic about America today than I have been my whole life. 
-        
-        Because I see the future that is within our grasp. 
-        
-        Because I know there is simply nothing beyond our capacity. 
-        
-        We are the only nation on Earth that has always turned every crisis we have faced into an opportunity. 
-        
-        The only nation that can be defined by a single word: possibilities. 
-        
-        So on this night, in our 245th year as a nation, I have come to report on the State of the Union. 
-        
-        And my report is this: the State of the Union is strong—because you, the American people, are strong. 
-        
-        We are stronger today than we were a year ago. 
-        
-        And we will be stronger a year from now than we are today. 
-        
-        Now is our moment to meet and overcome the challenges of our time. 
-        
-        And we will, as one people. 
-        
-        One America. 
-        
-        The United States of America. 
-        
-        May God bless you all. May God protect our troops.`;
-        const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 3000 });
+        const text = `议长女士、副总统女士、我们的第一夫人和第二先生。国会和内阁成员。最高法院法官。我的美国同胞们。去年，新冠肺炎 (COVID-19) 将我们分开。今年我们终于又在一起了。今晚，我们以民主党、共和党和独立人士的身份开会。但最重要的是作为美国人。对美国人民和宪法负有相互之间的责任。并坚定不移地相信自由将永远战胜暴政。六天前，俄罗斯总统弗拉基米尔·普京试图动摇自由世界的基础，认为他可以让自由世界屈服于他的威胁方式。但他严重失算了。他以为只要进入乌克兰，世界就会翻滚。相反，他遇到了一堵他从未想象过的力量之墙。他见到了乌克兰人民。从泽连斯基总统到每一位乌克兰人，他们的无畏、勇气和决心激励着世界。成群结队的市民用身体挡住坦克。从学生到退休教师，每个人都变成了保卫祖国的士兵。在这场斗争中，正如泽连斯基总统在欧洲议会演讲中所说的“光明将战胜黑暗”。乌克兰驻美国大使今晚在这里。让我们今晚在这个会议厅的每个人向乌克兰和世界发出明确的信号。如果可以的话，请起立并表明，是的，我们美利坚合众国与乌克兰人民站在一起。纵观我们的历史，我们已经吸取了这样的教训：当独裁者不为他们的侵略付出代价时，他们就会造成更多的混乱。他们继续前进。美国和世界面临的成本和威胁不断上升​​。这就是为什么创建北约联盟是为了确保第二次世界大战后欧洲的和平与稳定。美国和其他 29 个国家都是其成员。这很重要。美国外交很重要。美国解决问题。普京最近对乌克兰的攻击是有预谋的、无端的。他拒绝了反复的外交努力。他认为西方和北约不会做出回应。他认为他可以在家里分裂我们。普京错了。我们准备好了。这就是我们所做的。我们做了广泛而认真的准备。我们花了几个月的时间建立了一个由欧洲、美洲、亚洲和非洲的其他热爱自由国家组成的联盟来对抗普京。我花了无数的时间来团结我们的欧洲盟友。`;
+        const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
         const docs = await textSplitter.createDocuments([text]);
         const chain = loadSummarizationChain(model, {
             type: 'refine',
-            questionPrompt: SUMMARY_PROMPT
+            questionPrompt: SUMMARY_PROMPT,
         });
         const result = await chain.call({
             input_documents: docs,

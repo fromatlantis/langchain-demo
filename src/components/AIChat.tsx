@@ -11,6 +11,7 @@ const AIChat = () => {
     };
 
     const handleSend = () => {
+        setAnswer('');
         getAnswer();
     };
 
@@ -36,6 +37,7 @@ const AIChat = () => {
             const { value, done: readerDone } = await reader.read();
             if (value) {
                 const char = decoder.decode(value);
+                console.log(char);
                 if (char === '\n' && answer().endsWith('\n')) {
                     continue;
                 }

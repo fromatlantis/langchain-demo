@@ -35,8 +35,10 @@ const RetrievalQA = () => {
         const reader = data.getReader();
         const decoder = new TextDecoder('utf-8');
         let done = false;
+        console.log(reader)
         while (!done) {
             const { value, done: readerDone } = await reader.read();
+            console.log(value)
             if (value) {
                 const char = decoder.decode(value);
                 console.log(char);

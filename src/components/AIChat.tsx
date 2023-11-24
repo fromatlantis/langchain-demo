@@ -15,7 +15,7 @@ const AIChat = () => {
     };
 
     const getAnswer = async () => {
-        setLoading(true);
+        // setLoading(true);
         const response = await fetch(`/api/chat`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -25,13 +25,33 @@ const AIChat = () => {
                 prompt: prompt(),
             }),
         });
-        const result = await response.json();
-        if (result.error) {
-            setAnswer(result.error.message);
-        } else {
-            setAnswer(result.text);
+        const data = response.body;
+        if (!data) {
+            throw new Error('没有返回数据，请稍后再试');
         }
-        setLoading(false);
+        const reader = data.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let done = false;
+        while (!done) {
+            const { value, done: readerDone } = await reader.read();
+            if (value) {
+                const char = decoder.decode(value);
+                if (char === '\n' && answer().endsWith('\n')) {
+                    continue;
+                }
+                if (char) {
+                    setAnswer(answer() + char);
+                }
+            }
+            done = readerDone;
+        }
+        // const result = await response.json();
+        // if (result.error) {
+        //     setAnswer(result.error.message);
+        // } else {
+        //     setAnswer(result.text);
+        // }
+        // setLoading(false);
     };
 
     return (

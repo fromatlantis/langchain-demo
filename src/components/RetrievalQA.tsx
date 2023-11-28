@@ -31,29 +31,9 @@ const RetrievalQA = () => {
                 prompt: prompt(),
             }),
         });
-        const data = response.body;
-        const reader = data.getReader();
-        const decoder = new TextDecoder('utf-8');
-        let done = false;
-        console.log(reader)
-        while (!done) {
-            const { value, done: readerDone } = await reader.read();
-            console.log(value)
-            if (value) {
-                const char = decoder.decode(value);
-                console.log(char);
-                if (char === '\n' && answer().endsWith('\n')) {
-                    continue;
-                }
-                if (char) {
-                    setAnswer(answer() + char);
-                }
-            }
-            done = readerDone;
-        }
-        // const result = await response.json();
-        // setAnswer(result?.text);
-        // setLoading(false);
+        const result = await response.json();
+        setAnswer(result?.text);
+        setLoading(false);
     };
 
     return (

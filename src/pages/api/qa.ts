@@ -45,16 +45,15 @@ export const POST: APIRoute = async ({ params, request }) => {
         const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever(), {
             prompt,
         });
-        const stream = await chain.stream({
+        const result = await chain.call({
             query: body.prompt,
         });
-        return new Response(stream);
-        // return new Response(JSON.stringify(result), {
-        //     status: 200,
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // });
+        return new Response(JSON.stringify(result), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
     } catch (error) {
         return new Response(
             JSON.stringify({

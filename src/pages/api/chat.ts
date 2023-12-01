@@ -13,6 +13,7 @@ export const POST: APIRoute = async ({ params, request }) => {
         const model = new OpenAI({
             openAIApiKey: OPENAI_API_KEY,
             modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
+            streaming: true,
             temperature: 0, // For best results with the output fixing parser
         });
         const chain = RunnableSequence.from([model, new BytesOutputParser()]);

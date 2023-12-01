@@ -20,7 +20,7 @@ const RetrievalQA = () => {
     };
 
     const getAnswer = async () => {
-        setLoading(true);
+        // setLoading(true);
         const response = await fetch(`/api/qa-stream`, {
             headers: {
                 'Content-Type': 'application/json',

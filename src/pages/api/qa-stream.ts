@@ -3,9 +3,16 @@ import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 
+import {
+  RunnablePassthrough,
+  RunnableSequence,
+} from "langchain/schema/runnable";
+
 import { RetrievalQAChain } from 'langchain/chains';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import { PromptTemplate } from 'langchain/prompts';
+import { BytesOutputParser } from 'langchain/schema/output_parser';
+import { formatDocumentsAsString } from "langchain/util/document";
 
 import type { APIRoute } from 'astro';
 
@@ -26,10 +33,10 @@ export const POST: APIRoute = async ({ params, request }) => {
         // 嵌入并存储在向量数据库
         const embeddings = new OpenAIEmbeddings();
         const vectorStore = await MemoryVectorStore.fromDocuments(splitDocs, embeddings);
+        const vectorStoreRetriever = vectorStore.asRetriever();
         // LLM
         const model = new ChatOpenAI({
             openAIApiKey: OPENAI_API_KEY,
-            callbacks:[],
             modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
             temperature: 0, // For best results with the output fixing parser
         });
@@ -43,18 +50,29 @@ export const POST: APIRoute = async ({ params, request }) => {
       Helpful Answer:`;
         const prompt = PromptTemplate.fromTemplate(template);
         // chain
-        const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever(), {
-            prompt,
-        });
-        const result = await chain.call({
-            query: body.prompt,
-        });
-        return new Response(JSON.stringify(result), {
-            status: 200,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        // const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever(), {
+        //     prompt,
+        // });
+        const chain = RunnableSequence.from([
+          {
+            context: vectorStoreRetriever.pipe(formatDocumentsAsString),
+            question: new RunnablePassthrough(),
+          },
+          prompt,
+          model,
+          new BytesOutputParser(),
+        ]);
+        const stream = await chain.stream(body.prompt);
+        return new Response(stream);
+        // const result = await chain.call({
+        //     query: body.prompt,
+        // });
+        // return new Response(JSON.stringify(result), {
+        //     status: 200,
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // });
     } catch (error) {
         return new Response(
             JSON.stringify({

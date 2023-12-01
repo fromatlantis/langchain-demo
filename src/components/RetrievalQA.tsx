@@ -31,9 +31,30 @@ const RetrievalQA = () => {
                 prompt: prompt(),
             }),
         });
-        const result = await response.json();
-        setAnswer(result?.text);
-        setLoading(false);
+        // const result = await response.json();
+        // setAnswer(result?.text);
+        // setLoading(false);
+        const data = response.body;
+        if (!data) {
+            throw new Error('没有返回数据，请稍后再试');
+        }
+        const reader = data.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let done = false;
+        while (!done) {
+            const { value, done: readerDone } = await reader.read();
+            if (value) {
+                const char = decoder.decode(value);
+                console.log(char);
+                if (char === '\n' && answer().endsWith('\n')) {
+                    continue;
+                }
+                if (char) {
+                    setAnswer(answer() + char);
+                }
+            }
+            done = readerDone;
+        }
     };
 
     return (

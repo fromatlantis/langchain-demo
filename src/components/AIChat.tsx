@@ -24,6 +24,7 @@ const AIChat = () => {
             method: 'POST',
             body: JSON.stringify({
                 prompt: prompt(),
+                localKey: localStorage.getItem('localKey')
             }),
         });
         const data = response.body;

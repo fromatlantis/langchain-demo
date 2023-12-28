@@ -23,6 +23,7 @@ const IOModel = () => {
             method: 'POST',
             body: JSON.stringify({
                 prompt: prompt(),
+                localKey: localStorage.getItem('localKey')
             }),
         });
         const result = await response.json();

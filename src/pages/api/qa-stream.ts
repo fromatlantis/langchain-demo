@@ -3,16 +3,13 @@ import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 
-import {
-  RunnablePassthrough,
-  RunnableSequence,
-} from "langchain/schema/runnable";
+import { RunnablePassthrough, RunnableSequence } from 'langchain/schema/runnable';
 
 import { RetrievalQAChain } from 'langchain/chains';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import { PromptTemplate } from 'langchain/prompts';
 import { BytesOutputParser } from 'langchain/schema/output_parser';
-import { formatDocumentsAsString } from "langchain/util/document";
+import { formatDocumentsAsString } from 'langchain/util/document';
 
 import type { APIRoute } from 'astro';
 
@@ -36,7 +33,8 @@ export const POST: APIRoute = async ({ params, request }) => {
         const vectorStoreRetriever = vectorStore.asRetriever();
         // LLM
         const model = new ChatOpenAI({
-            openAIApiKey: OPENAI_API_KEY,
+            openAIApiKey: OPENAI_API_KEY || body.localKey,
+            streaming: true,
             modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
             temperature: 0, // For best results with the output fixing parser
         });
@@ -54,13 +52,13 @@ export const POST: APIRoute = async ({ params, request }) => {
         //     prompt,
         // });
         const chain = RunnableSequence.from([
-          {
-            context: vectorStoreRetriever.pipe(formatDocumentsAsString),
-            question: new RunnablePassthrough(),
-          },
-          prompt,
-          model,
-          new BytesOutputParser(),
+            {
+                context: vectorStoreRetriever.pipe(formatDocumentsAsString),
+                question: new RunnablePassthrough(),
+            },
+            prompt,
+            model,
+            new BytesOutputParser(),
         ]);
         const stream = await chain.stream(body.prompt);
         return new Response(stream);

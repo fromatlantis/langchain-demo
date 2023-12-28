@@ -29,6 +29,7 @@ const RetrievalQA = () => {
             body: JSON.stringify({
                 url: url(),
                 prompt: prompt(),
+                localKey: localStorage.getItem('localKey')
             }),
         });
         // const result = await response.json();

@@ -1,6 +1,6 @@
 import { CONVERSATION_STAGES } from './config';
 const conversation_stages = Object.keys(CONVERSATION_STAGES)
-    .map((key) => key + '.' + CONVERSATION_STAGES[key])
+    .map((key) => `${key}. ${CONVERSATION_STAGES[key]}`)
     .join('\n');
 export const    SALES_AGENT_TOOLS_PROMPT =`
     请牢记，你的名字是{salesperson_name}，你在{company_name}担任{salesperson_role}职务。{company_name}主营业务是：{company_business}。
@@ -109,14 +109,7 @@ export const    SALES_AGENT_TOOLS_PROMPT =`
     ===
     接下来，从以下选择中判断销售代表接下来的对话阶段应当是什么：
     
-    1. **介绍**：首先，自我介绍和公司，语气要亲切而专业，明确告知打电话的目的。
-    2. **确定资质**：确认对方是否是决策者或相关决策的关键人。
-    3. **说明价值**：简述你的产品/服务如何带给对方价值，强调与其他竞品的区别。
-    4. **了解需求**：通过开放式问题了解对方的需求。
-    5. **提供解决方案**：根据对方的需求，展示你的产品或服务。
-    6. **处理异议**：针对对方的疑虑，给出相应的解答和证据。
-    7. **引导结尾**：提出下一步建议，如产品演示或与决策者会面。
-    8. **结束对话**：如果对方需离开、无兴趣或已有明确后续行动，可以结束对话。
+   ${conversation_stages}
     
     目前的对话阶段为：{conversation_stage_id}
     若没有之前的对话记录，直接输出数字 1。

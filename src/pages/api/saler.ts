@@ -12,7 +12,7 @@ export const POST: APIRoute = async ({ params, request }) => {
         );
         const res = await stage_analyzer_chain.call({
             conversation_history: '',
-            conversation_stage_id: 0,
+            conversation_stage_id: +body.prompt || 0,
         });
         console.log(res);
         // const result = await model.call(body.prompt);

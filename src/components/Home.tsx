@@ -1,7 +1,7 @@
 import { createSignal, For, Show } from 'solid-js';
 
 const Home = () => {
-    const [key, setKey] = createSignal('');
+    const [key, setKey] = createSignal(localStorage.getItem('localKey') || '');
 
     const handleChange = (e: CustomEvent) => {
         setKey(e.detail.value);

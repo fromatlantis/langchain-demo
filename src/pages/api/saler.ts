@@ -6,16 +6,15 @@ import { loadStageAnalyzerChain } from '~/gpts/sales-gpt/chains';
 export const POST: APIRoute = async ({ params, request }) => {
     try {
         const body = await request.json();
-        llm.openAIApiKey = body.localKey
-        // const llm = new OpenAI({
-        //   openAIApiKey: body.localKey,
-        //   modelName: 'gpt-3.5-turbo', // Or gpt-3.5-turbo
-        //   // streaming: true,
-        //   temperature: 0, // For best results with the output fixing parser
-        // });
-        const stage_analyzer_chain = loadStageAnalyzerChain(llm, true);
-        const res = await stage_analyzer_chain.call({ conversation_history: "", conversation_stage_id: 0 });
-        console.log(res)
+        const stage_analyzer_chain = loadStageAnalyzerChain(
+            llm({ openAIApiKey: body.localKey }),
+            true,
+        );
+        const res = await stage_analyzer_chain.call({
+            conversation_history: '',
+            conversation_stage_id: 0,
+        });
+        console.log(res);
         // const result = await model.call(body.prompt);
         // return new Response(
         //     JSON.stringify({

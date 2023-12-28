@@ -6,10 +6,12 @@ import { OPENAI_API_KEY, BASE_URL } from '~/config';
 const openAIApiKey = OPENAI_API_KEY;
 const baseURL = BASE_URL;
 
-export const embeddings: OpenAIEmbeddings = new OpenAIEmbeddings({
-    openAIApiKey,
-    configuration: { baseURL },
-});
+export const embeddings: (config: Record<string, string>) => OpenAIEmbeddings = (config) =>
+    new OpenAIEmbeddings({
+        openAIApiKey,
+        configuration: { baseURL },
+        ...config,
+    });
 const options = {
     openAIApiKey,
     temperature: 0,
@@ -17,5 +19,5 @@ const options = {
     modelName: 'gpt-3.5-turbo',
     configuration: { baseURL },
 };
-export const llm = new OpenAI(options);
-export const chat = new ChatOpenAI(options);
+export const llm = (config: Record<string, string>) => new OpenAI({ ...options, ...config });
+export const chat = (config: Record<string, string>) => new ChatOpenAI({ ...options, ...config });

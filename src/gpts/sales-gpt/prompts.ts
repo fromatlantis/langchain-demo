@@ -10,7 +10,9 @@ export const stageAnalyzerPrompt = `
 ===
 现在，仅从以下选项中进行选择，确定代理在销售对话中的下一个直接对话阶段应该是什么：
 ${conversation_stages}
-仅回答1到8之间的数字，并最好猜测对话应继续到哪个阶段。如果没有对话记录，则输出1。答累只需一个数字，不能有任何单词。不要回答任何其他问题，也不要在您的回答中添加任何内容
+仅回答1到8之间的数字，并最好猜测对话应继续到哪个阶段。
+如果没有对话记录，则输出 1。
+答累只需一个数字，不能有任何单词。不要回答任何其他问题，也不要在您的回答中添加任何内容
 `;
 export const salesConversationPrompt = `
 请牢记，你的名字是'{salesperson_name}'，你在{company_name}担任{salesperson_role}职务。{company_name}主营业务是：{company_business}。

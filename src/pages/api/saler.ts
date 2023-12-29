@@ -47,7 +47,9 @@ export const POST: APIRoute = async ({ params, request }) => {
 
         // init sales agent
         await sales_agent.seed_agent();
+        await sales_agent.determine_conversation_stage();
         await sales_agent.human_step(body.prompt);
+        await sales_agent.determine_conversation_stage();
         const res = await sales_agent.step();
         return new Response(
             JSON.stringify(res),

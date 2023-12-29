@@ -50,9 +50,7 @@ export const POST: APIRoute = async ({ params, request }) => {
         await sales_agent.human_step(body.prompt);
         const res = await sales_agent.step();
         return new Response(
-            JSON.stringify({
-                text: res,
-            }),
+            JSON.stringify(res),
             {
                 status: 200,
                 headers: {

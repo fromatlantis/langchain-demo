@@ -32,9 +32,12 @@ dependencies:
   cheerio:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
+  hnswlib-node:
+    specifier: ^2.1.0
+    version: 2.1.0
   langchain:
     specifier: ^0.0.178
-    version: 0.0.178(cheerio@1.0.0-rc.12)
+    version: 0.0.178(cheerio@1.0.0-rc.12)(hnswlib-node@2.1.0)
   solid-js:
     specifier: ^1.4.3
     version: 1.8.5
@@ -4698,6 +4701,14 @@ packages:
       space-separated-tokens: 2.0.2
     dev: false
 
+  /hnswlib-node@2.1.0:
+    resolution: {integrity: sha512-d3ugWZd0pXpGiaHksg7Kckd1e75qyqM10QHz/WW6QTv7TtoYK/lh+V6ANvxsSiJQbwij01Ds+k76XsjlqUpD8Q==}
+    requiresBuild: true
+    dependencies:
+      bindings: 1.5.0
+      node-addon-api: 7.0.0
+    dev: false
+
   /html-entities@2.3.3:
     resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
     dev: false
@@ -5177,7 +5188,7 @@ packages:
     resolution: {integrity: sha512-Y+60/zizpJ3HRH8DCss+q95yr6145JXZo46OTpFvDZWLfRCE4qChOyk1b26nMaNpfHHgxagk9dXT5OP0Tfe+dQ==}
     dev: false
 
-  /langchain@0.0.178(cheerio@1.0.0-rc.12):
+  /langchain@0.0.178(cheerio@1.0.0-rc.12)(hnswlib-node@2.1.0):
     resolution: {integrity: sha512-M2nhrRLRA7LaI/rkIGu6dIbGCywBuGgmMsNq/97tyXsASPp6AgMPMNYTpyim/LC432JwQjEdf429AiGY+2eZow==}
     engines: {node: '>=18'}
     peerDependencies:
@@ -5482,6 +5493,7 @@ packages:
       decamelize: 1.2.0
       expr-eval: 2.0.2
       flat: 5.0.2
+      hnswlib-node: 2.1.0
       js-tiktoken: 1.0.7
       js-yaml: 4.1.0
       jsonpointer: 5.0.1
@@ -6288,6 +6300,10 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /node-addon-api@7.0.0:
+    resolution: {integrity: sha512-vgbBJTS4m5/KkE16t5Ly0WW9hz46swAstv0hYYwMtbG7AznRhNyfLRe8HZAiWIpcHzoO7HxhLuBQj9rJ/Ho0ZA==}
+    dev: false
 
   /node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}

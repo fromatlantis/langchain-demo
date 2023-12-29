@@ -1,5 +1,5 @@
 import { PromptTemplate } from 'langchain/prompts';
-import { LLMChain } from 'langchain/chains';
+import { LLMChain, RetrievalQAChain } from 'langchain/chains';
 import { BaseLanguageModel } from 'langchain/base_language';
 import { loadSalesDocVectorStore } from './retrieval';
 import { STAGE_ANALYZER_INCEPTION_PROMPT, SALES_AGENT_INCEPTION_PROMPT } from './prompts';

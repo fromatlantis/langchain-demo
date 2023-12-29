@@ -19,6 +19,7 @@
     "@vite-pwa/astro": "^0.1.4",
     "astro": "^3.4.2",
     "cheerio": "1.0.0-rc.12",
+    "hnswlib-node": "^2.1.0",
     "langchain": "^0.0.178",
     "solid-js": "^1.4.3",
     "typescript": "^5.2.2",

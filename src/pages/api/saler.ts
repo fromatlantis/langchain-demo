@@ -2,19 +2,17 @@ import type { APIRoute } from 'astro';
 import { OpenAI } from 'langchain/llms/openai';
 import { llm } from '~/gpts/llm/openai';
 import { agent_setup } from '~/gpts/sales-gpt/agents/setup';
-import {
-    loadStageAnalyzerChain,
-    loadSalesConversationChain,
-    setup_knowledge_base,
-} from '~/gpts/sales-gpt/chains';
+import { loadStageAnalyzerChain, loadSalesConversationChain } from '~/gpts/sales-gpt/chains';
+import { setup_knowledge_base } from '~/gpts/sales-gpt/agents/tools';
+import { SalesGPT } from '~/gpts/sales-gpt/agents/salesGPT';
 
 export const POST: APIRoute = async ({ params, request }) => {
     try {
         const body = await request.json();
-        const stage_analyzer_chain = loadStageAnalyzerChain(
-            llm({ openAIApiKey: body.localKey }),
-            true,
-        );
+        // const stage_analyzer_chain = loadStageAnalyzerChain(
+        //     llm({ openAIApiKey: body.localKey }),
+        //     true,
+        // );
         // const res = await stage_analyzer_chain.call({
         //     conversation_history: '',
         //     conversation_stage_id: 0,
@@ -31,23 +29,37 @@ export const POST: APIRoute = async ({ params, request }) => {
         //     conversation_stage:
         //         '**介绍**：首先，自我介绍和公司，语气要亲切而专业，明确告知打电话的目的。',
         // });
-        const knowledge_base = await setup_knowledge_base(llm({ openAIApiKey: body.localKey }), {
+        // const knowledge_base = await setup_knowledge_base(llm({ openAIApiKey: body.localKey }), {
+        //     openAIApiKey: body.localKey,
+        // });
+        // const res = await knowledge_base.call({ query: body.prompt });
+        const config = {
+            salesperson_name: 'Ted Lasso',
+            use_tools: true,
             openAIApiKey: body.localKey,
-        });
-        const res = await knowledge_base.call({ query: body.prompt });
-        console.log(res);
-        // const result = await model.call(body.prompt);
-        // return new Response(
-        //     JSON.stringify({
-        //         text: result,
-        //     }),
-        //     {
-        //         status: 200,
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //     },
-        // );
+        };
+
+        const sales_agent = await SalesGPT.from_llm(
+            llm({ openAIApiKey: body.localKey }),
+            false,
+            config,
+        );
+
+        // init sales agent
+        await sales_agent.seed_agent();
+        await sales_agent.human_step(body.prompt);
+        const res = await sales_agent.step();
+        return new Response(
+            JSON.stringify({
+                text: res,
+            }),
+            {
+                status: 200,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            },
+        );
     } catch (error) {
         return new Response(
             JSON.stringify({

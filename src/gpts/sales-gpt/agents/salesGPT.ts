@@ -100,6 +100,7 @@ export class SalesGPT extends BaseChain {
                 },
                 runManager?.getChild('sales_agent_executor'),
             );
+            console.log('use_tools', res)
             ai_message = res.output;
         } else {
             res = await this.sales_conversation_utterance_chain.call(
@@ -146,7 +147,7 @@ export class SalesGPT extends BaseChain {
             sales_agent_executor = undefined;
         } else {
             tools = await get_tools(llm, { openAIApiKey });
-            console.log('tools', tools)
+            // console.log('tools', tools)
             const prompt = new CustomPromptTemplateForTools({
                 tools,
                 inputVariables: [

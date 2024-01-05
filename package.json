@@ -16,6 +16,7 @@
     "@astrojs/solid-js": "^3.0.2",
     "@astrojs/vercel": "^5.2.0",
     "@aura-group/aura-desigin": "^0.0.4",
+    "@aura-group/aura-desigin-pro": "^0.0.1",
     "@vite-pwa/astro": "^0.1.4",
     "astro": "^3.4.2",
     "cheerio": "1.0.0-rc.12",

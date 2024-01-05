@@ -73,7 +73,7 @@ const AIChat = () => {
                     <ar-icon name="send"></ar-icon>
                 </ar-button>
             </div>
-            {answer()}
+            <ar-rich-text text={answer()}></ar-rich-text>
         </div>
     );
 };

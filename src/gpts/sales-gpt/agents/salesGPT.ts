@@ -146,7 +146,7 @@ export class SalesGPT extends BaseChain {
             sales_agent_executor = undefined;
         } else {
             tools = await get_tools(llm, { openAIApiKey });
-
+            console.log('tools', tools)
             const prompt = new CustomPromptTemplateForTools({
                 tools,
                 inputVariables: [

@@ -19,7 +19,7 @@ export class Service {
             use_tools: true,
             openAIApiKey,
         };
-        this.sales_agent = await SalesGPT.from_llm(llm({ openAIApiKey }), false, config);
+        this.sales_agent = await SalesGPT.from_llm(llm({ openAIApiKey }), true, config);
     }
     async chat(question: string) {
         const sales_agent = this.sales_agent;

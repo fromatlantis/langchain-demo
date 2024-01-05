@@ -33,18 +33,15 @@ export const POST: APIRoute = async ({ params, request }) => {
         //     openAIApiKey: body.localKey,
         // });
         // const res = await knowledge_base.call({ query: body.prompt });
-        console.log('first')
-        const service = new Service(body.localKey)
+        console.log('first');
+        const service = new Service(body.localKey);
         const res = await service.chat(body.prompt);
-        return new Response(
-            JSON.stringify(res),
-            {
-                status: 200,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+        return new Response(JSON.stringify(res), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json',
             },
-        );
+        });
     } catch (error) {
         return new Response(
             JSON.stringify({

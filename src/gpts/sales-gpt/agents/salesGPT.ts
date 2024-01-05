@@ -20,15 +20,15 @@ export class SalesGPT extends BaseChain {
 
     conversation_stage_dict: Record<string, string> = CONVERSATION_STAGES;
 
-    salesperson_name: string = 'Ted Lasso';
-    salesperson_role: string = 'Business Development Representative';
+    salesperson_name: string = '小张';
+    salesperson_role: string = '销售经理';
     company_name: string = 'Sleep Haven';
     company_business: string =
-        'Sleep Haven is a premium mattress company that provides customers with the most comfortable and supportive sleeping experience possible. We offer a range of high-quality mattresses, pillows, and bedding accessories that are designed to meet the unique needs of our customers.';
+        'Sleep Haven是一家优质床垫公司，为客户提供最舒适、最支持的睡眠体验。我们提供一系列高品质的床垫、枕头和床上用品，旨在满足客户的独特需求。';
     company_values: string =
-        "Our mission at Sleep Haven is to help people achieve a better night's sleep by providing them with the best possible sleep solutions. We believe that quality sleep is essential to overall health and well-being, and we are committed to helping our customers achieve optimal sleep by offering exceptional products and customer service.";
+        "Sleep Haven的使命是为人们提供最好的睡眠解决方案，帮助他们获得更好的睡眠。我们相信高质量的睡眠对整体健康和幸福至关重要，我们致力于通过提供卓越的产品和客户服务来帮助我们的客户实现最佳睡眠。";
     conversation_purpose: string =
-        'find out whether they are looking to achieve better sleep via buying a premier mattress.';
+        '了解他们是否希望通过购买优质床垫来获得更好的睡眠。';
     conversation_type: string = 'call';
 
     constructor(args: {

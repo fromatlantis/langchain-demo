@@ -1,5 +1,5 @@
 export const agent_setup = {
-  "salesperson_name": "张三",
+  "salesperson_name": "小张",
   "salesperson_role": "销售经理",
   "company_name": "Sleep Haven",
   "company_business":  "Sleep Haven是一家优质床垫公司，为客户提供最舒适、最支持的睡眠体验。我们提供一系列高品质的床垫、枕头和床上用品，旨在满足客户的独特需求。",

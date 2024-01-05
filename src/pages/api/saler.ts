@@ -4,7 +4,7 @@ import { llm } from '~/gpts/llm/openai';
 import { agent_setup } from '~/gpts/sales-gpt/agents/setup';
 import { loadStageAnalyzerChain, loadSalesConversationChain } from '~/gpts/sales-gpt/chains';
 import { setup_knowledge_base } from '~/gpts/sales-gpt/agents/tools';
-import { SalesGPT } from '~/gpts/sales-gpt/agents/salesGPT';
+import { Service } from '~/gpts/sales-gpt/agents/service';
 
 export const POST: APIRoute = async ({ params, request }) => {
     try {
@@ -33,24 +33,8 @@ export const POST: APIRoute = async ({ params, request }) => {
         //     openAIApiKey: body.localKey,
         // });
         // const res = await knowledge_base.call({ query: body.prompt });
-        const config = {
-            salesperson_name: 'Ted Lasso',
-            use_tools: true,
-            openAIApiKey: body.localKey,
-        };
-
-        const sales_agent = await SalesGPT.from_llm(
-            llm({ openAIApiKey: body.localKey }),
-            false,
-            config,
-        );
-
-        // init sales agent
-        await sales_agent.seed_agent();
-        await sales_agent.determine_conversation_stage();
-        await sales_agent.human_step(body.prompt);
-        await sales_agent.determine_conversation_stage();
-        const res = await sales_agent.step();
+        const service = new Service(body.localKey)
+        const res = await service.chat(body.prompt);
         return new Response(
             JSON.stringify(res),
             {

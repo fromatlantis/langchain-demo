@@ -1,38 +1,40 @@
 {
-  "name": "langchain-demo",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.3.0",
-    "@astrojs/deno": "^5.0.1",
-    "@astrojs/node": "^6.0.3",
-    "@astrojs/solid-js": "^3.0.2",
-    "@astrojs/vercel": "^5.2.0",
-    "@aura-group/aura-desigin": "^0.0.4",
-    "@aura-group/aura-desigin-pro": "^0.0.1",
-    "@vite-pwa/astro": "^0.1.4",
-    "astro": "^3.4.2",
-    "cheerio": "1.0.0-rc.12",
-    "hnswlib-node": "^2.1.0",
-    "langchain": "^0.0.178",
-    "solid-js": "^1.4.3",
-    "typescript": "^5.2.2",
-    "unocss": "^0.57.1",
-    "vite-plugin-pwa": "^0.16.6",
-    "workbox-window": "^7.0.0",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "eslint": "^8.52.0",
-    "eslint-config-aurai": "^0.0.1",
-    "prettier": "^3.0.3",
-    "prettier-plugin-astro": "^0.12.1"
-  }
+    "name": "langchain-demo",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/check": "^0.3.0",
+        "@astrojs/deno": "^5.0.1",
+        "@astrojs/node": "^6.0.3",
+        "@astrojs/solid-js": "^3.0.2",
+        "@astrojs/vercel": "^5.2.0",
+        "@aura-group/aura-desigin": "^0.0.4",
+        "@aura-group/aura-desigin-pro": "^0.0.1",
+        "@langchain/core": "^0.1.9",
+        "@langchain/openai": "^0.0.10",
+        "@vite-pwa/astro": "^0.1.4",
+        "astro": "^3.4.2",
+        "cheerio": "1.0.0-rc.12",
+        "hnswlib-node": "^2.1.0",
+        "langchain": "^0.1.0",
+        "solid-js": "^1.4.3",
+        "typescript": "^5.2.2",
+        "unocss": "^0.57.1",
+        "vite-plugin-pwa": "^0.16.6",
+        "workbox-window": "^7.0.0",
+        "zod": "^3.22.4"
+    },
+    "devDependencies": {
+        "eslint": "^8.52.0",
+        "eslint-config-aurai": "^0.0.1",
+        "prettier": "^3.0.3",
+        "prettier-plugin-astro": "^0.12.1"
+    }
 }

@@ -117,6 +117,7 @@ export class SalesGPT extends BaseChain {
                 },
                 runManager?.getChild('sales_conversation_utterance'),
             );
+            console.log('no_tools', res)
             ai_message = res.text;
         }
 

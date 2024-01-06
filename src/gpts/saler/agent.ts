@@ -12,7 +12,7 @@ import { tools } from './tools';
 export const genExecutor = (openAIApiKey: string) => {
     const model = new ChatOpenAI({
         openAIApiKey,
-        modelName: 'gpt-3.5-turbo',
+        modelName: 'gpt-3.5-turbo-1106',
         temperature: 0,
     });
 

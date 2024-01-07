@@ -57,7 +57,7 @@ export class SalesGPT extends BaseChain {
     async determine_conversation_stage() {
         let { text } = await this.stage_analyzer_chain.call({
             conversation_history: this.conversation_history.join('\n'),
-            current_conversation_stage: this.current_conversation_stage,
+            // current_conversation_stage: this.current_conversation_stage,
             conversation_stage_id: this.conversation_stage_id,
         });
 
@@ -87,7 +87,7 @@ export class SalesGPT extends BaseChain {
             res = await this.sales_agent_executor.call(
                 {
                     input: '',
-                    conversation_stage: this.current_conversation_stage,
+                    // conversation_stage: this.current_conversation_stage,
                     conversation_history: this.conversation_history.join('\n'),
                     salesperson_name: this.salesperson_name,
                     salesperson_role: this.salesperson_role,

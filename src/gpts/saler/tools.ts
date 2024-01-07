@@ -37,7 +37,7 @@ export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEm
 export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = false) => {
     const prompt = new PromptTemplate({
         template: STAGE_ANALYZER_INCEPTION_PROMPT,
-        inputVariables: ['conversation_history', 'conversation_stage_id'],
+        inputVariables: ['chat_history', 'conversation_stage_id'],
     });
     const chain = new LLMChain({ llm, prompt, verbose });
     return new ChainTool({

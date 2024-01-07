@@ -3,6 +3,7 @@ import { ChatPromptTemplate, MessagesPlaceholder } from '@langchain/core/prompts
 import { AgentExecutor, type AgentStep } from 'langchain/agents';
 import { ChatOpenAI } from '@langchain/openai';
 import { formatToOpenAIFunction } from 'langchain/tools';
+import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 
 import { formatToOpenAIFunctionMessages } from 'langchain/agents/format_scratchpad';
 import { OpenAIFunctionsAgentOutputParser } from 'langchain/agents/openai/output_parser';
@@ -15,8 +16,10 @@ export const genExecutor = async (openAIApiKey: string) => {
         modelName: 'gpt-3.5-turbo-1106',
         temperature: 0,
     });
-
-    const tools = [await productSearch(model)];
+    const embeddings = new OpenAIEmbeddings({
+        openAIApiKey,
+    });
+    const tools = [await productSearch(model, embeddings)];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),

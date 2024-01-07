@@ -15,14 +15,14 @@ const customTool = new DynamicTool({
 /** Define your list of tools. */
 export const tools = [customTool];
 
-export async function productSearch(llm: BaseLanguageModel) {
+export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEmbeddings) {
     const splitter = new CharacterTextSplitter({
         chunkSize: 10,
         chunkOverlap: 0,
     });
     const docs = await splitter.createDocuments([products.content]);
     const new_docs = await splitter.splitDocuments(docs);
-    const vectorstore = await MemoryVectorStore.fromDocuments(new_docs, new OpenAIEmbeddings());
+    const vectorstore = await MemoryVectorStore.fromDocuments(new_docs, embeddings);
     const retriever = vectorstore.asRetriever();
     const chain = RetrievalQAChain.fromLLM(llm, retriever);
     return new ChainTool({

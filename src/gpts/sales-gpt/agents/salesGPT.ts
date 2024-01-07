@@ -61,7 +61,7 @@ export class SalesGPT extends BaseChain {
             conversation_stage_id: this.conversation_stage_id,
         });
 
-        // this.conversation_stage_id = text;
+        this.conversation_stage_id = text;
         this.current_conversation_stage = this.retrieve_conversation_stage(text);
         console.log(`${text}: ${this.current_conversation_stage}`);
         return text;

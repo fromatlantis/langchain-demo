@@ -4,10 +4,13 @@ export class Service {
     executor;
     constructor(openAIApiKey: string) {
         if (!instance) {
-            this.executor = genExecutor(openAIApiKey);
+            this.init(openAIApiKey)
             instance = this;
         }
         return instance;
+    }
+    async init(openAIApiKey: string) {
+        this.executor = await genExecutor(openAIApiKey);
     }
     async invoke(input: string) {
         const result = await this.executor.invoke({

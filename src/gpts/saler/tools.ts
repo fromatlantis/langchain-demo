@@ -4,7 +4,10 @@ import { CharacterTextSplitter } from 'langchain/text_splitter';
 import { BaseLanguageModel } from 'langchain/base_language';
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { RetrievalQAChain } from 'langchain/chains';
+import { PromptTemplate } from 'langchain/prompts';
 import { products } from './products';
+import { STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
+import { LLMChain } from 'langchain/chains';
 
 const customTool = new DynamicTool({
     name: 'get_word_length',
@@ -31,3 +34,15 @@ export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEm
         chain,
     });
 }
+export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = false) => {
+    const prompt = new PromptTemplate({
+        template: STAGE_ANALYZER_INCEPTION_PROMPT,
+        inputVariables: ['conversation_history', 'conversation_stage_id'],
+    });
+    const chain = new LLMChain({ llm, prompt, verbose });
+    return new ChainTool({
+        name: 'conversation-stage',
+        description: '当您需要从对话历史中判断你现在所处在哪个阶段时非常有用',
+        chain,
+    });
+};

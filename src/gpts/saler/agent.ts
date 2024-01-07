@@ -8,7 +8,7 @@ import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 import { formatToOpenAIFunctionMessages } from 'langchain/agents/format_scratchpad';
 import { OpenAIFunctionsAgentOutputParser } from 'langchain/agents/openai/output_parser';
 
-import { productSearch } from './tools';
+import { productSearch, conversationStage } from './tools';
 import { SALES_AGENT_INCEPTION_PROMPT, STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
 
 export const genExecutor = async (openAIApiKey: string) => {
@@ -20,7 +20,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,
     });
-    const tools = [await productSearch(model, embeddings)];
+    const tools = [await productSearch(model, embeddings), conversationStage(model)];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),

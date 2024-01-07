@@ -4,7 +4,7 @@ export class Service {
     executor;
     constructor(openAIApiKey: string) {
         if (!instance) {
-            this.init(openAIApiKey)
+            this.init(openAIApiKey);
             instance = this;
         }
         return instance;
@@ -13,9 +13,13 @@ export class Service {
         this.executor = await genExecutor(openAIApiKey);
     }
     async invoke(input: string) {
-        const result = await this.executor.invoke({
-            input,
-        });
-        return result;
+        if (this.executor) {
+            const result = await this.executor.invoke({
+                input,
+            });
+            return result;
+        } else {
+            return '代理加载中...';
+        }
     }
 }

@@ -7,14 +7,16 @@ import { formatToOpenAIFunction } from 'langchain/tools';
 import { formatToOpenAIFunctionMessages } from 'langchain/agents/format_scratchpad';
 import { OpenAIFunctionsAgentOutputParser } from 'langchain/agents/openai/output_parser';
 
-import { tools } from './tools';
+import { productSearch } from './tools';
 
-export const genExecutor = (openAIApiKey: string) => {
+export const genExecutor = async (openAIApiKey: string) => {
     const model = new ChatOpenAI({
         openAIApiKey,
         modelName: 'gpt-3.5-turbo-1106',
         temperature: 0,
     });
+
+    const tools = [await productSearch(model)];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),
@@ -40,7 +42,7 @@ export const genExecutor = (openAIApiKey: string) => {
     const executor = AgentExecutor.fromAgentAndTools({
         agent: runnableAgent,
         tools,
-        verbose: true
+        verbose: true,
     });
 
     return executor;

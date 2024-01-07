@@ -51,7 +51,7 @@ export const genExecutor = async (openAIApiKey: string) => {
             input: (i: { input: string; steps: AgentStep[] }) => i.input,
             agent_scratchpad: (i: { input: string; steps: AgentStep[] }) =>
                 formatToOpenAIFunctionMessages(i.steps),
-            chat_history: (i) => i.input,
+            chat_history: (i) => i.chat_history,
         },
         prompt,
         modelWithFunctions,

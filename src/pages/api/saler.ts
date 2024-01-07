@@ -38,7 +38,7 @@ export const POST: APIRoute = async ({ params, request }) => {
         const service = new Service(body.localKey);
         // const res = await service.chat(body.prompt);
         const res = await service.invoke(body.prompt);
-        return new Response(JSON.stringify(res), {
+        return new Response(res, {
             status: 200,
             headers: {
                 'Content-Type': 'application/json',

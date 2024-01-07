@@ -24,11 +24,7 @@ export class Service {
             });
             this.chatHistory.push(new HumanMessage(input));
             this.chatHistory.push(new AIMessage(result.output));
-            const stream = await this.executor.stream({
-                input,
-                chat_history: this.chatHistory,
-            });
-            return stream;
+            return result.output;
         } else {
             return '代理加载中...';
         }

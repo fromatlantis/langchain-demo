@@ -4,8 +4,8 @@ import { llm } from '~/gpts/llm/openai';
 import { agent_setup } from '~/gpts/sales-gpt/agents/setup';
 import { loadStageAnalyzerChain, loadSalesConversationChain } from '~/gpts/sales-gpt/chains';
 import { setup_knowledge_base } from '~/gpts/sales-gpt/agents/tools';
-// import { Service } from '~/gpts/sales-gpt/agents/service';
-import { Service } from '~/gpts/saler/service';
+import { Service } from '~/gpts/sales-gpt/agents/service';
+// import { Service } from '~/gpts/saler/service';
 
 export const POST: APIRoute = async ({ params, request }) => {
     try {
@@ -36,8 +36,8 @@ export const POST: APIRoute = async ({ params, request }) => {
         // const res = await knowledge_base.call({ query: body.prompt });
         console.log('first');
         const service = new Service(body.localKey);
-        // const res = await service.chat(body.prompt);
-        const res = await service.invoke(body.prompt);
+        const res = await service.chat(body.prompt);
+        // const res = await service.invoke(body.prompt);
         return new Response(JSON.stringify(res), {
             status: 200,
             headers: {

@@ -9,7 +9,7 @@ import { formatToOpenAIFunctionMessages } from 'langchain/agents/format_scratchp
 import { OpenAIFunctionsAgentOutputParser } from 'langchain/agents/openai/output_parser';
 
 import { productSearch } from './tools';
-import { SALES_AGENT_INCEPTION_PROMPT } from './prompts';
+import { SALES_AGENT_INCEPTION_PROMPT, STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
 
 export const genExecutor = async (openAIApiKey: string) => {
     const model = new ChatOpenAI({
@@ -41,6 +41,7 @@ export const genExecutor = async (openAIApiKey: string) => {
 
     const prompt = ChatPromptTemplate.fromMessages([
         ['system', SYSTEM],
+        new MessagesPlaceholder('chat_history'),
         ['human', '{input}'],
         new MessagesPlaceholder('agent_scratchpad'),
     ]);
@@ -50,6 +51,7 @@ export const genExecutor = async (openAIApiKey: string) => {
             input: (i: { input: string; steps: AgentStep[] }) => i.input,
             agent_scratchpad: (i: { input: string; steps: AgentStep[] }) =>
                 formatToOpenAIFunctionMessages(i.steps),
+            chat_history: (i) => i.input,
         },
         prompt,
         modelWithFunctions,

@@ -24,7 +24,7 @@ export class Service {
             });
             this.chatHistory.push(new HumanMessage(input));
             this.chatHistory.push(new AIMessage(result.output));
-            return result;
+            return result.output;
         } else {
             return '代理加载中...';
         }

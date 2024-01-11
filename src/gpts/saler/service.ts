@@ -25,6 +25,10 @@ export class Service {
             // this.chatHistory.push(new HumanMessage(input));
             // this.chatHistory.push(new AIMessage(result.output));
             // return result.output;
+            for await (const chunk of result) {
+                console.log(JSON.stringify(chunk, null, 2));
+                console.log("------");
+            }
             return result;
         } else {
             return '代理加载中...';

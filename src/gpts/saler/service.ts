@@ -18,7 +18,7 @@ export class Service {
     }
     async invoke(input: string) {
         if (this.executor) {
-            const result = await this.executor.streamLog({
+            const result = await this.executor.stream({
                 input,
                 chat_history: this.chatHistory,
             });

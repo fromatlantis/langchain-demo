@@ -37,7 +37,7 @@ export const POST: APIRoute = async ({ params, request }) => {
         console.log('first');
         const service = new Service(body.localKey);
         // const res = await service.chat(body.prompt);
-        const res: any = await service.invoke(body.prompt);
+        const res = await service.invoke(body.prompt);
         return new Response(res);
         // return new Response(res, {
         //     status: 200,

@@ -19,7 +19,7 @@ export class Service {
     async invoke(input: string) {
         if (this.executor) {
             this.chatHistory.push(new HumanMessage(input));
-            const result = await this.executor.streamLog({
+            const result = await this.executor.stream({
                 input,
                 chat_history: this.chatHistory,
             });

@@ -17,7 +17,7 @@ const AIChat = () => {
 
     const getAnswer = async () => {
         // setLoading(true);
-        const response = await fetch(`/api/saler`, {
+        const response = await fetch(`/api/chat`, {
             headers: {
                 'Content-Type': 'application/json',
             },

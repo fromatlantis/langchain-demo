@@ -39,7 +39,7 @@ export class Service {
                             ) {
                                 const uint8Array = encoder.encode(addOp.value);
                                 controller.enqueue(uint8Array);
-                            } else if (addOp.path.startsWith('/streamed_output')) {
+                            } else if (addOp.path === '/final_output') {
                                 this.chatHistory.push(new AIMessage(addOp.value.output));
                             }
                         }

@@ -27,8 +27,12 @@ const AIChat = () => {
                 localKey: localStorage.getItem('localKey')
             }),
         });
-        const data = response.body;
+        const data = response.body as any;
         console.log(response, data)
+        for await (const chunk of data) {
+            console.log(JSON.stringify(chunk, null, 2));
+            console.log("------");
+        }
         if (!data) {
             throw new Error('没有返回数据，请稍后再试');
         }

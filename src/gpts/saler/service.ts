@@ -23,9 +23,9 @@ export class Service {
                 input,
                 chat_history: this.chatHistory,
             });
-            // for await (const chunk of result) {
-            //     console.log(JSON.stringify(chunk, null, 2));
-            // }
+            for await (const chunk of result) {
+                console.log(JSON.stringify(chunk, null, 2));
+            }
             // this.chatHistory.push(new AIMessage(result.output));
             // return result.output;
             return result

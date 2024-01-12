@@ -18,13 +18,17 @@ export class Service {
     }
     async invoke(input: string) {
         if (this.executor) {
-            const result = await this.executor.invoke({
+            const result = await this.executor.streamLog({
                 input,
                 chat_history: this.chatHistory,
             });
-            this.chatHistory.push(new HumanMessage(input));
-            this.chatHistory.push(new AIMessage(result.output));
-            return result.output;
+            for await (const chunk of result) {
+                console.log(JSON.stringify(chunk, null, 2));
+            }
+            // this.chatHistory.push(new HumanMessage(input));
+            // this.chatHistory.push(new AIMessage(result.output));
+            // return result.output;
+            return result
         } else {
             return '代理加载中...';
         }

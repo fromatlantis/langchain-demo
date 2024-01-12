@@ -28,7 +28,17 @@ export class Service {
             return new ReadableStream({
                 async start(controller) {
                     for await (const chunk of result) {
-                        controller.enqueue(chunk);
+                        if (chunk.ops?.length > 0 && chunk.ops[0].op === "add") {
+                          const addOp = chunk.ops[0];
+                          if (
+                            addOp.path.startsWith("/logs/ChatOpenAI") &&
+                            typeof addOp.value === "string" &&
+                            addOp.value.length
+                          ) {
+                            console.log(addOp.value);
+                            controller.enqueue(addOp.value);
+                          }
+                        }
                     }
                     controller.close();
                 },

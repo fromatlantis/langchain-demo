@@ -28,7 +28,7 @@ export class Service {
             }
             // this.chatHistory.push(new AIMessage(result.output));
             // return result.output;
-            return result
+            // return result
         } else {
             return '代理加载中...';
         }

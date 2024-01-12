@@ -19,6 +19,7 @@ export class Service {
     async invoke(input: string) {
         if (this.executor) {
             this.chatHistory.push(new HumanMessage(input));
+            console.log(this.chatHistory)
             const result = this.executor.streamLog({
                 input,
                 chat_history: this.chatHistory,
@@ -29,7 +30,7 @@ export class Service {
                 async start(controller) {
                     const encoder = new TextEncoder();
                     for await (const chunk of result) {
-                        console.log(chunk);
+                        // console.log(chunk);
                         if (chunk.ops?.length > 0 && chunk.ops[0].op === 'add') {
                             const addOp = chunk.ops[0];
                             if (

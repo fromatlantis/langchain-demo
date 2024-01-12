@@ -28,6 +28,7 @@ const AIChat = () => {
             }),
         });
         const data = response.body;
+        console.log(response, data)
         if (!data) {
             throw new Error('没有返回数据，请稍后再试');
         }

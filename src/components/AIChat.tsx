@@ -40,21 +40,21 @@ const AIChat = () => {
         const decoder = new TextDecoder('utf-8');
         let done = false;
         while (!done) {
-            const answer = await reader.read();
-            console.log(answer)
-            // const { value, done: readerDone, ...others } = await reader.read();
-            // console.log(value, others);
-            // if (value) {
-            //     const char = decoder.decode(value);
-            //     console.log(char);
-            //     if (char === '\n' && answer().endsWith('\n')) {
-            //         continue;
-            //     }
-            //     if (char) {
-            //         setAnswer(answer() + char);
-            //     }
-            // }
-            done = answer.done;
+            // const answer = await reader.read();
+            // console.log(answer)
+            const { value, done: readerDone, ...others } = await reader.read();
+            console.log(value, others);
+            if (value) {
+                const char = decoder.decode(value);
+                console.log(char);
+                if (char === '\n' && answer().endsWith('\n')) {
+                    continue;
+                }
+                if (char) {
+                    setAnswer(answer() + char);
+                }
+            }
+            done = readerDone;
         }
         // const result = await response.json();
         // if (result.error) {

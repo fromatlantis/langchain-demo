@@ -18,11 +18,12 @@ export class Service {
     }
     async invoke(input: string) {
         if (this.executor) {
-            this.chatHistory.push(new HumanMessage(input));
-            console.log(this.chatHistory)
+            const chatHistory = this.chatHistory;
+            chatHistory.push(new HumanMessage(input));
+            console.log(chatHistory);
             const result = this.executor.streamLog({
                 input,
-                chat_history: this.chatHistory,
+                chat_history: chatHistory,
             });
             // this.chatHistory.push(new AIMessage(result.output));
             // return result.output;
@@ -42,8 +43,8 @@ export class Service {
                                 const uint8Array = encoder.encode(addOp.value);
                                 controller.enqueue(uint8Array);
                             } else if (addOp.path === '/streamed_output/-') {
-                                console.log(addOp)
-                                this.chatHistory.push(new AIMessage(addOp.value.output));
+                                console.log('all', addOp);
+                                chatHistory.push(new AIMessage(addOp.value.output));
                             }
                         }
                     }

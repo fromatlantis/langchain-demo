@@ -41,6 +41,7 @@ export class Service {
                                 const uint8Array = encoder.encode(addOp.value);
                                 controller.enqueue(uint8Array);
                             } else if (addOp.path === '/final_output') {
+                                console.log(addOp)
                                 this.chatHistory.push(new AIMessage(addOp.value.output));
                             }
                         }

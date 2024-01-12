@@ -25,19 +25,22 @@ export class Service {
             });
             // this.chatHistory.push(new AIMessage(result.output));
             // return result.output;
-            return new ReadableStream({
+            return new ReadableStream<Uint8Array>({
                 async start(controller) {
+                    const encoder = new TextEncoder();
                     for await (const chunk of result) {
-                        if (chunk.ops?.length > 0 && chunk.ops[0].op === "add") {
-                          const addOp = chunk.ops[0];
-                          if (
-                            addOp.path.startsWith("/logs/ChatOpenAI") &&
-                            typeof addOp.value === "string" &&
-                            addOp.value.length
-                          ) {
-                            console.log(addOp.value);
-                            controller.enqueue(addOp.value);
-                          }
+                        console.log(chunk)
+                        if (chunk.ops?.length > 0 && chunk.ops[0].op === 'add') {
+                            const addOp = chunk.ops[0];
+                            if (
+                                addOp.path.startsWith('/logs/ChatOpenAI') &&
+                                typeof addOp.value === 'string' &&
+                                addOp.value.length
+                            ) {
+                                console.log(addOp.value);
+                                const uint8Array = encoder.encode(addOp.value);
+                                controller.enqueue(uint8Array);
+                            }
                         }
                     }
                     controller.close();

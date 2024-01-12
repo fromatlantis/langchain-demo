@@ -19,7 +19,7 @@ export class Service {
     async invoke(input: string) {
         if (this.executor) {
             this.chatHistory.push(new HumanMessage(input));
-            const result = await this.executor.stream({
+            const result = await this.executor.streamLog({
                 input,
                 chat_history: this.chatHistory,
             });
@@ -28,7 +28,7 @@ export class Service {
             }
             // this.chatHistory.push(new AIMessage(result.output));
             // return result.output;
-            // return result
+            return result
         } else {
             return '代理加载中...';
         }

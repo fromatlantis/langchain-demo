@@ -54,7 +54,7 @@ const AIChat = () => {
             //         setAnswer(answer() + char);
             //     }
             // }
-            // done = readerDone;
+            done = answer.done;
         }
         // const result = await response.json();
         // if (result.error) {

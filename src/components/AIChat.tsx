@@ -27,11 +27,16 @@ const AIChat = () => {
                 localKey: localStorage.getItem('localKey'),
             }),
         });
-        const data = response.body;
+        const data = response.body as any;
         if (!data) {
             throw new Error('没有返回数据，请稍后再试');
         }
-        console.log(data)
+        console.log(data);
+        const reader = data.getIterator();
+        for await (const chunk of reader) {
+            // 解析数据块
+            console.log(JSON.stringify(chunk, null, 2));
+        }
         // const reader = data.getReader();
         // const decoder = new TextDecoder('utf-8');
         // let done = false;

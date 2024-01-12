@@ -36,7 +36,8 @@ const AIChat = () => {
         const decoder = new TextDecoder('utf-8');
         let done = false;
         while (!done) {
-            const { value, done: readerDone } = await reader.read();
+            const { value, done: readerDone, ...others } = await reader.read();
+            console.log(value, others)
             if (value) {
                 const char = decoder.decode(value);
                 console.log(char);

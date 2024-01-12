@@ -16,6 +16,7 @@ export const genExecutor = async (openAIApiKey: string) => {
         openAIApiKey,
         modelName: 'gpt-3.5-turbo-1106',
         temperature: 0,
+        streaming: true
     });
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,

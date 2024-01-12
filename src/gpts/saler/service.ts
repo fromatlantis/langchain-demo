@@ -16,19 +16,13 @@ export class Service {
     async init(openAIApiKey: string) {
         this.executor = await genExecutor(openAIApiKey);
     }
-    async invoke(input: string) {
+    invoke(input: string) {
         if (this.executor) {
             this.chatHistory.push(new HumanMessage(input));
-            const result = await this.executor.stream({
+            return this.executor.stream({
                 input,
                 chat_history: this.chatHistory,
             });
-            // for await (const chunk of result) {
-            //     console.log(JSON.stringify(chunk, null, 2));
-            // }
-            // this.chatHistory.push(new AIMessage(result.output));
-            // return result.output;
-            return result
         } else {
             return '代理加载中...';
         }

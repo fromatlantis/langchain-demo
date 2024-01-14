@@ -63,7 +63,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const executor = AgentExecutor.fromAgentAndTools({
         agent: runnableAgent,
         tools,
-        verbose: true,
+        verbose: false,
     });
 
     return executor;

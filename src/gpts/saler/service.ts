@@ -36,7 +36,7 @@ export class Service {
                             const addOp = chunk.ops[0];
                             // console.log(addOp.path, addOp.value)
                             if (
-                                addOp.path.startsWith('/logs/ChatOpenAI:3') &&
+                                addOp.path.startsWith('/logs/ChatOpenAI') &&
                                 typeof addOp.value === 'string' &&
                                 addOp.value.length
                             ) {

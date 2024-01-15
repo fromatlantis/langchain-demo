@@ -16,15 +16,23 @@ export const genExecutor = async (openAIApiKey: string) => {
         openAIApiKey,
         modelName: 'gpt-3.5-turbo-1106',
         temperature: 0,
-        streaming: true
+        streaming: true,
     });
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,
     });
-    const tools = [await productSearch(model, embeddings)];
+    const tools = [conversationStage(model), await productSearch(model, embeddings)];
 
     const modelWithFunctions = model.bind({
-        functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),
+        functions: tools
+            .map((tool) => formatToOpenAIFunction(tool) as any)
+            .concat([
+                {
+                    handleLLMNewToken(token: string) {
+                        console.log({ token });
+                    },
+                },
+            ]),
     });
 
     const SYSTEM = await PromptTemplate.fromTemplate(SALES_AGENT_INCEPTION_PROMPT).format({

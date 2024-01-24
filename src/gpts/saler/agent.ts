@@ -28,7 +28,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,
     });
-    const tools = [await productSearch(model, embeddings), conversationStage(model)];
+    const tools = [await productSearch(model, embeddings)];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),
@@ -70,7 +70,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const executor = AgentExecutor.fromAgentAndTools({
         agent: runnableAgent,
         tools,
-        verbose: true,
+        verbose: false,
     });
 
     return executor;

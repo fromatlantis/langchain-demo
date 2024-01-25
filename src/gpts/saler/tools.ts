@@ -8,7 +8,7 @@ import { PromptTemplate } from 'langchain/prompts';
 import { products } from './products';
 import { STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
 import { LLMChain } from 'langchain/chains';
-import { StringOutputParser } from "@langchain/core/output_parsers";
+import { StringOutputParser } from '@langchain/core/output_parsers';
 
 const customTool = new DynamicTool({
     name: 'get_word_length',
@@ -28,10 +28,16 @@ export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenA
     const new_docs = await splitter.splitDocuments(docs);
     const vectorstore = await MemoryVectorStore.fromDocuments(new_docs, embeddings);
     const retriever = vectorstore.asRetriever();
-    const chain = RetrievalQAChain.fromLLM(llm, retriever);
+    const template = `使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答案。
+{context}
+Question: {question}
+Helpful Answer:`;
+    const chain = RetrievalQAChain.fromLLM(llm, retriever, {
+        prompt: PromptTemplate.fromTemplate(template),
+    });
     return new ChainTool({
         name: 'mattresses-search',
-        description: '当您需要回答有关床垫产品信息的问题时非常有用，请务必使用中文回复',
+        description: '当您需要回答有关床垫产品信息的问题时非常有用',
         chain,
     });
 }
@@ -47,4 +53,3 @@ export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = fal
         chain,
     });
 };
-

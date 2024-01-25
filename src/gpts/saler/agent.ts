@@ -51,7 +51,7 @@ export const genExecutor = async (openAIApiKey: string) => {
         conversation_purpose: '了解他们是否希望通过购买优质床垫来获得更好的睡眠。',
         chat_history: '',
         conversation_type: 'call',
-        conversation_stage_id: 1,
+        conversation_stage: '1. **介绍**：首先，介绍自己以及公司主营业务，语气要亲切而专业，明确告知打电话的目的。',
     });
 
     const prompt = ChatPromptTemplate.fromMessages([

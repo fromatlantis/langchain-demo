@@ -8,7 +8,7 @@ import { PromptTemplate } from 'langchain/prompts';
 import { products } from './products';
 import { STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
 import { LLMChain } from 'langchain/chains';
-import { StringOutputParser } from '@langchain/core/output_parsers';
+import { StringOutputParser } from "@langchain/core/output_parsers";
 
 const customTool = new DynamicTool({
     name: 'get_word_length',
@@ -35,30 +35,16 @@ export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEm
         chain,
     });
 }
-// export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = false) => {
-//     const prompt = new PromptTemplate({
-//         template: STAGE_ANALYZER_INCEPTION_PROMPT,
-//         inputVariables: ['chat_history', 'conversation_stage_id'],
-//     });
-//     const chain = new LLMChain({ llm, prompt, verbose });
-//     return new ChainTool({
-//         name: 'conversation-stage',
-//         description: '当您需要从对话历史中判断你现在所处在哪个阶段时非常有用',
-//         chain,
-//     });
-// };
-export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = false) =>
-    new DynamicTool({
-        name: 'get_conversation_stage',
-        description: '当您需要从对话历史中判断你现在所处在哪个阶段时非常有用',
-        func: async (input: string) => {
-            const prompt = new PromptTemplate({
-                template: STAGE_ANALYZER_INCEPTION_PROMPT,
-                inputVariables: ['chat_history'],
-            });
-            const outputParser = new StringOutputParser();
-            const chain = prompt.pipe(llm).pipe(outputParser);
-            const result = await chain.invoke({ chat_history: input });
-            return result;
-        },
+export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = false) => {
+    const prompt = new PromptTemplate({
+        template: STAGE_ANALYZER_INCEPTION_PROMPT,
+        inputVariables: ['chat_history', 'conversation_stage_id'],
     });
+    const chain = new LLMChain({ llm, prompt, verbose });
+    return new ChainTool({
+        name: 'conversation-stage',
+        description: '当您需要从对话历史中判断你现在所处在哪个阶段时非常有用',
+        chain,
+    });
+};
+

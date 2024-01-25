@@ -29,7 +29,7 @@ export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEm
     const retriever = vectorstore.asRetriever();
     const chain = RetrievalQAChain.fromLLM(llm, retriever);
     return new ChainTool({
-        name: 'producs-search',
+        name: '产品搜索',
         description: '当您需要回答有关床垫产品信息的问题时非常有用',
         chain,
     });

@@ -63,8 +63,8 @@ export const genExecutor = async (openAIApiKey: string) => {
     ]);
     const prompt1 = new PromptTemplate({
         template: STAGE_ANALYZER_INCEPTION_PROMPT,
-        inputVariables: ['chat_history', 'conversation_stage'],
-    });
+        inputVariables: ['chat_history'],
+    })
     const chain = prompt1.pipe(model).pipe(new StringOutputParser());
     const runnableAgent = RunnableSequence.from([
         {

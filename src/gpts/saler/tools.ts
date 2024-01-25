@@ -31,7 +31,7 @@ export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEm
     const chain = RetrievalQAChain.fromLLM(llm, retriever);
     return new ChainTool({
         name: 'mattresses-search',
-        description: '当您需要回答有关床垫或产品信息的问题时非常有用，请务必使用中文回复',
+        description: '当您需要回答有关床垫产品信息的问题时非常有用，请务必使用中文回复',
         chain,
     });
 }

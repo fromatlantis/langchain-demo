@@ -53,7 +53,7 @@ export const genExecutor = async (openAIApiKey: string) => {
         chat_history: '',
         agent_scratchpad: '',
         conversation_type: 'call',
-        conversation_stage: '1'
+        // conversation_stage: '1'
     });
 
     const prompt = ChatPromptTemplate.fromMessages([
@@ -74,7 +74,7 @@ export const genExecutor = async (openAIApiKey: string) => {
                 formatToOpenAIFunctionMessages(i.steps),
             chat_history: (i: { input: string; steps: AgentStep[]; chat_history: string }) =>
                 i.chat_history,
-            conversation_stage: () => chain,
+            // conversation_stage: () => chain,
         },
         prompt,
         modelWithFunctions,

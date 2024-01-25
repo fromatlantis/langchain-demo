@@ -15,8 +15,13 @@ export const genExecutor = async (openAIApiKey: string) => {
     const model = new ChatOpenAI({
         openAIApiKey,
         modelName: 'gpt-3.5-turbo-1106',
+        temperature: 0
+    });
+    const streamingModel = new ChatOpenAI({
+        openAIApiKey,
+        modelName: 'gpt-3.5-turbo-1106',
         temperature: 0,
-        // streaming: true,
+        streaming: true,
         callbacks: [
             {
                 handleLLMNewToken(token) {
@@ -30,7 +35,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     });
     const tools = [conversationStage(model), await productSearch(model, embeddings)];
 
-    const modelWithFunctions = model.bind({
+    const modelWithFunctions = streamingModel.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),
     });
 

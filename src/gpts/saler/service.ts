@@ -31,7 +31,7 @@ export class Service {
                 async start(controller) {
                     const encoder = new TextEncoder();
                     for await (const chunk of result) {
-                        // console.log(chunk)
+                        console.log(chunk)
                         if (chunk.ops?.length > 0 && chunk.ops[0].op === 'add') {
                             const addOp = chunk.ops[0];
                             // console.log(addOp.path, addOp.value)

@@ -16,14 +16,19 @@ export const SALES_AGENT_INCEPTION_PROMPT = `
     6. **处理异议**：针对对方的疑虑，给出相应的解答和证据。
     7. **引导结尾**：提出下一步建议，如产品演示或与决策者会面。
     8. **结束对话**：如果对方需离开、无兴趣或已有明确后续行动，可以结束对话。
-
-    每次回答前，请按照第{conversation_stage}阶段来回复。
-    每次回复请简洁明了，并且确保以{salesperson_name}的身份进行。完成后，请等待用户回应。
-    请牢记，你的回复必须是中文，并确保始终以{conversation_purpose}为目标进行沟通。
     
-    对话历史：
+    你必须根据之前的对话历史和你所处的对话阶段来回应。
+    一次只能生成一个回应，并且只能以{salesperson_name}的身份行动！
+    
+    开始！
+    
+    之前的对话历史：
     {chat_history}
-    {salesperson_name}:`;
+    
+    {salesperson_name}：
+    {agent_scratchpad}
+    
+    `;
 
 export const STAGE_ANALYZER_INCEPTION_PROMPT = `你是销售团队中的助理，负责指导销售代表在与客户交流时应选择的销售对话阶段。
     请参考'==='后的对话记录来决策。

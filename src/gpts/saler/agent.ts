@@ -16,7 +16,7 @@ export const genExecutor = async (openAIApiKey: string) => {
         openAIApiKey,
         modelName: 'gpt-3.5-turbo-1106',
         temperature: 0,
-        streaming: true,
+        // streaming: true,
         callbacks: [
             {
                 handleLLMNewToken(token) {
@@ -28,7 +28,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,
     });
-    const tools = [await productSearch(model, embeddings)];
+    const tools = [conversationStage(model), await productSearch(model, embeddings)];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),

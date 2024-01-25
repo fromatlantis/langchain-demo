@@ -21,7 +21,7 @@ export class Service {
             const chatHistory = this.chatHistory;
             chatHistory.push(new HumanMessage(input));
             // console.log(chatHistory);
-            const result = await this.executor.stream({
+            const result = this.executor.streamLog({
                 input,
                 chat_history: chatHistory,
             });

@@ -26,6 +26,9 @@ dependencies:
   '@aura-group/aura-desigin-pro':
     specifier: ^0.0.1
     version: 0.0.1
+  '@langchain/anthropic':
+    specifier: ^0.0.9
+    version: 0.0.9
   '@langchain/core':
     specifier: ^0.1.9
     version: 0.1.9
@@ -104,6 +107,22 @@ packages:
 
   /@antfu/utils@0.7.6:
     resolution: {integrity: sha512-pvFiLP2BeOKA/ZOS6jxx4XhKzdVLHDhGlFEaZ2flWWYf2xOqVniqpk38I04DFRyz+L0ASggl7SkItTc+ZLju4w==}
+    dev: false
+
+  /@anthropic-ai/sdk@0.12.4:
+    resolution: {integrity: sha512-KIho+Di8LZvtyLph1TKI1GiujApjryi+B5gXrRfmFsUmwDGJjzlFO/MKyvuJJVUyxCjYyoFLT53k/WweL1TsiQ==}
+    dependencies:
+      '@types/node': 18.18.8
+      '@types/node-fetch': 2.6.8
+      abort-controller: 3.0.0
+      agentkeepalive: 4.5.0
+      digest-fetch: 1.3.0
+      form-data-encoder: 1.7.2
+      formdata-node: 4.4.1
+      node-fetch: 2.7.0
+      web-streams-polyfill: 3.2.1
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@anthropic-ai/sdk@0.9.1:
@@ -2057,6 +2076,16 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: false
+
+  /@langchain/anthropic@0.0.9:
+    resolution: {integrity: sha512-4m6E7mUWzWMCqmEGeZ3/i6TuyOeFaihjRv8Oty6Xx6f5ZjFdGiMaY/UDFlKklhEMqx3vIX5IbLKlSX5EHspMvA==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@anthropic-ai/sdk': 0.12.4
+      '@langchain/core': 0.1.9
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /@langchain/community@0.0.15(hnswlib-node@2.1.0):

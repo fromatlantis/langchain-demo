@@ -7,6 +7,7 @@ import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 
 import { formatToOpenAIFunctionMessages } from 'langchain/agents/format_scratchpad';
 import { OpenAIFunctionsAgentOutputParser } from 'langchain/agents/openai/output_parser';
+import { StringOutputParser } from '@langchain/core/output_parsers';
 
 import { mattressesSearch, conversationStage } from './tools';
 import { SALES_AGENT_INCEPTION_PROMPT, STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
@@ -34,7 +35,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,
     });
-    const tools = [conversationStage(model), await mattressesSearch(model, embeddings)];
+    const tools = [await mattressesSearch(model, embeddings)];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),
@@ -49,8 +50,9 @@ export const genExecutor = async (openAIApiKey: string) => {
         company_values:
             'Sleep Haven的使命是为人们提供最好的睡眠解决方案，帮助他们获得更好的睡眠。我们相信高质量的睡眠对整体健康和幸福至关重要，我们致力于通过提供卓越的产品和客户服务来帮助我们的客户实现最佳睡眠。',
         conversation_purpose: '了解他们是否希望通过购买优质床垫来获得更好的睡眠。',
-        chat_history: '你好',
+        chat_history: '',
         conversation_type: 'call',
+        conversation_stage: ''
     });
 
     const prompt = ChatPromptTemplate.fromMessages([
@@ -59,7 +61,11 @@ export const genExecutor = async (openAIApiKey: string) => {
         ['human', '{input}'],
         new MessagesPlaceholder('agent_scratchpad'),
     ]);
-
+    const prompt1 = new PromptTemplate({
+        template: STAGE_ANALYZER_INCEPTION_PROMPT,
+        inputVariables: ['chat_history', 'conversation_stage_id'],
+    });
+    const chain = prompt1.pipe(model).pipe(new StringOutputParser());
     const runnableAgent = RunnableSequence.from([
         {
             input: (i: { input: string; steps: AgentStep[] }) => i.input,
@@ -67,6 +73,7 @@ export const genExecutor = async (openAIApiKey: string) => {
                 formatToOpenAIFunctionMessages(i.steps),
             chat_history: (i: { input: string; steps: AgentStep[]; chat_history: string }) =>
                 i.chat_history,
+            conversation_stage: () => chain,
         },
         prompt,
         modelWithFunctions,

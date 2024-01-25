@@ -17,6 +17,7 @@
         "@astrojs/vercel": "^5.2.0",
         "@aura-group/aura-desigin": "^0.0.4",
         "@aura-group/aura-desigin-pro": "^0.0.1",
+        "@langchain/anthropic": "^0.0.9",
         "@langchain/core": "^0.1.9",
         "@langchain/openai": "^0.0.10",
         "@vite-pwa/astro": "^0.1.4",

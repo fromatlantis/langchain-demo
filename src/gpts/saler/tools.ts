@@ -19,7 +19,7 @@ const customTool = new DynamicTool({
 /** Define your list of tools. */
 export const tools = [customTool];
 
-export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEmbeddings) {
+export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenAIEmbeddings) {
     const splitter = new CharacterTextSplitter({
         chunkSize: 10,
         chunkOverlap: 0,
@@ -30,7 +30,7 @@ export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEm
     const retriever = vectorstore.asRetriever();
     const chain = RetrievalQAChain.fromLLM(llm, retriever);
     return new ChainTool({
-        name: 'product-search',
+        name: 'mattresses-search',
         description: '当您需要回答有关床垫产品信息的问题时非常有用，请务必使用中文回复',
         chain,
     });

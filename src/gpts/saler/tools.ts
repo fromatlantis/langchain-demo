@@ -29,8 +29,8 @@ export async function productSearch(llm: BaseLanguageModel, embeddings: OpenAIEm
     const retriever = vectorstore.asRetriever();
     const chain = RetrievalQAChain.fromLLM(llm, retriever);
     return new ChainTool({
-        name: '产品搜索',
-        description: '当您需要回答有关床垫产品信息的问题时非常有用',
+        name: 'producs-search',
+        description: '当您需要回答有关床垫产品信息的问题时非常有用，请务必使用中文回复',
         chain,
     });
 }

@@ -35,9 +35,7 @@ export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenA
 Question: {question}
 Helpful Answer:`;
 
-    const chain = RetrievalQAChain.fromLLM(llm, retriever, {
-        prompt: PromptTemplate.fromTemplate(template),
-    });
+    const chain = RetrievalQAChain.fromLLM(llm, retriever);
     return new ChainTool({
         name: 'mattresses-search',
         description: '当您需要回答有关床垫信息的问题时非常有用',

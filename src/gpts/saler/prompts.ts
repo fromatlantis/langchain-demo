@@ -18,7 +18,8 @@ export const SALES_AGENT_INCEPTION_PROMPT = `
     8. **结束对话**：如果对方需离开、无兴趣或已有明确后续行动，可以结束对话。
     
     你必须根据之前的对话历史和你所处的对话阶段来回应。
-    一次只能生成一个回应，并且只能以{salesperson_name}的身份行动！
+    每次回复请简洁明了，并且确保以{salesperson_name}的身份进行。
+    记得，你的回复必须是中文，并确保始终以{conversation_purpose}为目标进行沟通。
     
     开始！
     
@@ -26,6 +27,8 @@ export const SALES_AGENT_INCEPTION_PROMPT = `
     {chat_history}
     
     {salesperson_name}：
+    {agent_scratchpad}
+    
     `;
 
 export const STAGE_ANALYZER_INCEPTION_PROMPT = `你是销售团队中的助理，负责指导销售代表在与客户交流时应选择的销售对话阶段。

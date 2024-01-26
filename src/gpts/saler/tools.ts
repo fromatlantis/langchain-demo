@@ -31,7 +31,10 @@ export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenA
     const template = `使用以下上下文来回答用户的问题。
 如果你不知道答案，就说你不知道，不要试图编造答案。
 ----------------
-{context}`;
+{context}
+Question: {question}
+Helpful Answer:
+`;
 
     const chain = RetrievalQAChain.fromLLM(llm, retriever, {
         prompt: PromptTemplate.fromTemplate(template),

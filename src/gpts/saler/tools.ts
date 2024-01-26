@@ -28,7 +28,7 @@ export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenA
     const new_docs = await splitter.splitDocuments(docs);
     const vectorstore = await MemoryVectorStore.fromDocuments(new_docs, embeddings);
     const retriever = vectorstore.asRetriever();
-    const template = `使用以下上下文来回答最后的问题。
+    const template = `使用以下上下文来回答问题
 ----------------
 {context}
 Question: {question}
@@ -38,7 +38,7 @@ Helpful Answer:`;
     });
     return new ChainTool({
         name: 'mattresses-search',
-        description: '当您需要回答有关床垫产品信息的问题时非常有用',
+        description: '当您需要回答有关床垫信息的问题时非常有用',
         chain,
     });
 }

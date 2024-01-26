@@ -28,14 +28,14 @@ export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenA
     const new_docs = await splitter.splitDocuments(docs);
     const vectorstore = await MemoryVectorStore.fromDocuments(new_docs, embeddings);
     const retriever = vectorstore.asRetriever();
-    const template = `使用以下上下文来回答问题
+    const template = `使用以下上下文来回答用户的问题。
+如果你不知道答案，就说你不知道，不要试图编造答案。
 ----------------
-{context}
-----------------
-Question: {question}
-Helpful Answer:`;
+{context}`;
 
-    const chain = RetrievalQAChain.fromLLM(llm, retriever);
+    const chain = RetrievalQAChain.fromLLM(llm, retriever, {
+        prompt: PromptTemplate.fromTemplate(template),
+    });
     return new ChainTool({
         name: 'mattresses-search',
         description: '当您需要回答有关床垫信息的问题时非常有用',

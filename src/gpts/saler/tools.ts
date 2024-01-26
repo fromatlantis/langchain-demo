@@ -33,8 +33,12 @@ export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenA
 {context}
 Question: {question}
 Helpful Answer:`;
+    const prompt = new PromptTemplate({
+        template,
+        inputVariables: ['chat_history'],
+    });
     const chain = RetrievalQAChain.fromLLM(llm, retriever, {
-        prompt: PromptTemplate.fromTemplate(template),
+        prompt
     });
     return new ChainTool({
         name: 'mattresses-search',

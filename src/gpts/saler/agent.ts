@@ -35,7 +35,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,
     });
-    const tools = [await mattressesSearch(model, embeddings)];
+    const tools = [conversationStage(model), await mattressesSearch(model, embeddings)];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),

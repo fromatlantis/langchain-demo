@@ -31,14 +31,12 @@ export async function mattressesSearch(llm: BaseLanguageModel, embeddings: OpenA
     const template = `使用以下上下文来回答问题
 ----------------
 {context}
+----------------
 Question: {question}
 Helpful Answer:`;
-    const prompt = new PromptTemplate({
-        template,
-        inputVariables: ['chat_history'],
-    });
+
     const chain = RetrievalQAChain.fromLLM(llm, retriever, {
-        prompt
+        prompt: PromptTemplate.fromTemplate(template),
     });
     return new ChainTool({
         name: 'mattresses-search',

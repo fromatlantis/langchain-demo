@@ -26,8 +26,6 @@ export const SALES_AGENT_INCEPTION_PROMPT = `
     {chat_history}
     
     {salesperson_name}：
-    {agent_scratchpad}
-    
     `;
 
 export const STAGE_ANALYZER_INCEPTION_PROMPT = `你是销售团队中的助理，负责指导销售代表在与客户交流时应选择的销售对话阶段。

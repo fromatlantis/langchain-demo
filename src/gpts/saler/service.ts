@@ -31,7 +31,7 @@ export class Service {
                 async start(controller) {
                     const encoder = new TextEncoder();
                     for await (const chunk of result) {
-                        console.log(chunk)
+                        console.log(chunk);
                         if (chunk.ops?.length > 0) {
                             const [firstOp] = chunk.ops;
                             // console.log(addOp.path, addOp.value)
@@ -44,21 +44,13 @@ export class Service {
                                 // console.log(addOp, chunk)
                                 const uint8Array = encoder.encode(firstOp.value);
                                 controller.enqueue(uint8Array);
-                            } else if (firstOp.path.endsWith('/final_output')) {
+                            } else if (
+                                firstOp.op === 'add' &&
+                                firstOp.path === '/streamed_output/-' &&
+                                typeof firstOp.value?.output === 'string'
+                            ) {
                                 // console.log('all', addOp);
-                                if (
-                                    firstOp.op === 'replace' &&
-                                    typeof firstOp.value?.output === 'string'
-                                ) {
-                                    chatHistory.push(new AIMessage(firstOp.value.output));
-                                } else if (
-                                    firstOp.op === 'add' &&
-                                    typeof firstOp.value?.output === 'string'
-                                ) {
-                                    const uint8Array = encoder.encode(firstOp.value.output);
-                                    controller.enqueue(uint8Array);
-                                    chatHistory.push(new AIMessage(firstOp.value.output));
-                                }
+                                chatHistory.push(new AIMessage(firstOp.value.output));
                             }
                         }
                     }

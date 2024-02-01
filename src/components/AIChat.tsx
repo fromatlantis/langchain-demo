@@ -24,10 +24,10 @@ const AIChat = () => {
             ...messages(),
             {
                 role: 'user',
-                contetn: prompt(),
+                content: prompt(),
             },
         ]);
-        if (answer()) {
+        if (answer().content) {
             setMessages([...messages(), answer()]);
             setAnswer({
                 role: 'assistant',

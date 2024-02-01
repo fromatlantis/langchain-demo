@@ -37,10 +37,10 @@ export const genExecutor = async (openAIApiKey: string) => {
         openAIApiKey,
     });
     const tools = [
-        new Calculator(),
         conversationStage(model),
         await mattressesSearch(model, embeddings),
         await get_working_hours(model, embeddings),
+        new Calculator(),
     ];
 
     const modelWithFunctions = model.bind({

@@ -3,13 +3,14 @@ import { ChatPromptTemplate, MessagesPlaceholder, PromptTemplate } from '@langch
 import { AgentExecutor, type AgentStep } from 'langchain/agents';
 import { ChatOpenAI } from '@langchain/openai';
 import { formatToOpenAIFunction } from 'langchain/tools';
+import { Calculator } from 'langchain/tools/calculator';
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
 
 import { formatToOpenAIFunctionMessages } from 'langchain/agents/format_scratchpad';
 import { OpenAIFunctionsAgentOutputParser } from 'langchain/agents/openai/output_parser';
 import { StringOutputParser } from '@langchain/core/output_parsers';
 
-import { mattressesSearch, conversationStage } from './tools';
+import { mattressesSearch, conversationStage, get_working_hours } from './tools';
 import { SALES_AGENT_INCEPTION_PROMPT, STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
 
 export const genExecutor = async (openAIApiKey: string) => {
@@ -35,7 +36,12 @@ export const genExecutor = async (openAIApiKey: string) => {
     const embeddings = new OpenAIEmbeddings({
         openAIApiKey,
     });
-    const tools = [conversationStage(model), await mattressesSearch(model, embeddings)];
+    const tools = [
+        conversationStage(model),
+        await mattressesSearch(model, embeddings),
+        await get_working_hours(model, embeddings),
+        new Calculator(),
+    ];
 
     const modelWithFunctions = model.bind({
         functions: tools.map((tool) => formatToOpenAIFunction(tool) as any),
@@ -65,7 +71,7 @@ export const genExecutor = async (openAIApiKey: string) => {
     const prompt1 = new PromptTemplate({
         template: STAGE_ANALYZER_INCEPTION_PROMPT,
         inputVariables: ['chat_history'],
-    })
+    });
     const chain = prompt1.pipe(model).pipe(new StringOutputParser());
     const runnableAgent = RunnableSequence.from([
         {

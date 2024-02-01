@@ -9,6 +9,7 @@ import { products } from './products';
 import { STAGE_ANALYZER_INCEPTION_PROMPT } from './prompts';
 import { LLMChain } from 'langchain/chains';
 import { StringOutputParser } from '@langchain/core/output_parsers';
+import { works } from './works';
 
 const customTool = new DynamicTool({
     name: 'get_word_length',
@@ -56,3 +57,28 @@ export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = fal
         chain,
     });
 };
+export async function get_working_hours(llm: BaseLanguageModel, embeddings: OpenAIEmbeddings) {
+    const splitter = new CharacterTextSplitter({
+        chunkSize: 10,
+        chunkOverlap: 0,
+    });
+    const docs = await splitter.createDocuments([works.content]);
+    const new_docs = await splitter.splitDocuments(docs);
+    const vectorstore = await MemoryVectorStore.fromDocuments(new_docs, embeddings);
+    const retriever = vectorstore.asRetriever();
+    const template = `使用以下上下文来回答用户的问题。第一行为表头，剩下行为表格内容
+----------------
+{context}
+Question: {question}
+Helpful Answer:
+`;
+
+    const chain = RetrievalQAChain.fromLLM(llm, retriever, {
+        prompt: PromptTemplate.fromTemplate(template),
+    });
+    return new ChainTool({
+        name: 'get_working_hours',
+        description: '当您需要查询和统计员工工时时非常有用',
+        chain,
+    });
+}

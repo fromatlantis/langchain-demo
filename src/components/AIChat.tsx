@@ -21,7 +21,7 @@ const AIChat = () => {
     const getAnswer = async () => {
         // setLoading(true);
         if (answer().content) {
-            setMessages([...messages(), answer()]);
+            setMessages([...messages(), { ...answer() }]);
             setAnswer({
                 role: 'assistant',
                 content: '',

@@ -20,13 +20,6 @@ const AIChat = () => {
 
     const getAnswer = async () => {
         // setLoading(true);
-        setMessages([
-            ...messages(),
-            {
-                role: 'user',
-                content: prompt(),
-            },
-        ]);
         if (answer().content) {
             setMessages([...messages(), answer()]);
             setAnswer({
@@ -34,6 +27,13 @@ const AIChat = () => {
                 content: '',
             });
         }
+        setMessages([
+            ...messages(),
+            {
+                role: 'user',
+                content: prompt(),
+            },
+        ]);
         const response = await fetch(`/api/saler`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -105,21 +105,14 @@ const AIChat = () => {
                 {(message) => (
                     <Show
                         when={message.role === 'user'}
-                        fallback={
-                            <>
-                                <span>销售助理：</span>
-                                <ar-rich-text text={message.content}></ar-rich-text>
-                            </>
-                        }
+                        fallback={<ar-rich-text text={`助理：${answer().content}`}></ar-rich-text>}
                     >
-                        <span>用户：</span>
-                        <ar-rich-text text={message.content}></ar-rich-text>
+                        <ar-rich-text text={`用户：${message.content}`}></ar-rich-text>
                     </Show>
                 )}
             </For>
             <Show when={answer().content}>
-                <span>销售助理：</span>
-                <ar-rich-text text={answer().content}></ar-rich-text>
+                <ar-rich-text text={`助理：${answer().content}`}></ar-rich-text>
             </Show>
         </div>
     );

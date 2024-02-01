@@ -59,8 +59,8 @@ export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = fal
 };
 export async function get_working_hours(llm: BaseLanguageModel, embeddings: OpenAIEmbeddings) {
     const splitter = new CharacterTextSplitter({
-        chunkSize: 30,
-        chunkOverlap: 3,
+        chunkSize: 100,
+        chunkOverlap: 10,
     });
     const docs = await splitter.createDocuments([works.content]);
     const new_docs = await splitter.splitDocuments(docs);

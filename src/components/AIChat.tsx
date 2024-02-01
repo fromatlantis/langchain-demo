@@ -59,6 +59,7 @@ const AIChat = () => {
             done = readerDone;
         }
         setMessages([...messages(), answer()]);
+        setAnswer('')
         // const result = await response.json();
         // if (result.error) {
         //     setAnswer(result.error.message);

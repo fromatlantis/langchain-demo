@@ -21,7 +21,7 @@ const AIChat = () => {
     const getAnswer = async () => {
         // setLoading(true);
         if (answer().content) {
-            setMessages([...messages(), { ...answer() }]);
+            setMessages([...messages(), answer()]);
             setAnswer({
                 role: 'assistant',
                 content: '',
@@ -105,7 +105,7 @@ const AIChat = () => {
                 {(message) => (
                     <Show
                         when={message.role === 'user'}
-                        fallback={<ar-rich-text text={`助理：${answer().content}`}></ar-rich-text>}
+                        fallback={<ar-rich-text text={`助理：${message.content}`}></ar-rich-text>}
                     >
                         <ar-rich-text text={`用户：${message.content}`}></ar-rich-text>
                     </Show>

@@ -78,7 +78,7 @@ Helpful Answer:
     });
     return new ChainTool({
         name: 'get_working_hours',
-        description: '当您需要查询和统计工时时非常有用',
+        description: '当您需要查询和计算工时时非常有用',
         chain,
     });
 }

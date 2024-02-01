@@ -4,6 +4,7 @@ import LoadingMask from './LoadingMask';
 const AIChat = () => {
     const [prompt, setPrompt] = createSignal('hello');
     const [answer, setAnswer] = createSignal('');
+    const [messages, setMessages] = createSignal([]);
     const [loading, setLoading] = createSignal(false);
 
     const handleChange = (e: CustomEvent) => {
@@ -17,6 +18,7 @@ const AIChat = () => {
 
     const getAnswer = async () => {
         // setLoading(true);
+        setMessages([...messages(), prompt()]);
         const response = await fetch(`/api/saler`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -56,6 +58,7 @@ const AIChat = () => {
             }
             done = readerDone;
         }
+        setMessages([...messages(), answer()]);
         // const result = await response.json();
         // if (result.error) {
         //     setAnswer(result.error.message);
@@ -81,6 +84,7 @@ const AIChat = () => {
                     <ar-icon name="send"></ar-icon>
                 </ar-button>
             </div>
+            <For each={messages()}>{(message, i) => <ar-rich-text text={message}></ar-rich-text>}</For>
             <ar-rich-text text={answer()}></ar-rich-text>
         </div>
     );

@@ -3,7 +3,10 @@ import LoadingMask from './LoadingMask';
 
 const AIChat = () => {
     const [prompt, setPrompt] = createSignal('hello');
-    const [answer, setAnswer] = createSignal('');
+    const [answer, setAnswer] = createSignal({
+        role: 'assistant',
+        content: '',
+    });
     const [messages, setMessages] = createSignal([]);
     const [loading, setLoading] = createSignal(false);
 
@@ -12,13 +15,25 @@ const AIChat = () => {
     };
 
     const handleSend = () => {
-        setAnswer('');
         getAnswer();
     };
 
     const getAnswer = async () => {
         // setLoading(true);
-        setMessages([...messages(), prompt()]);
+        setMessages([
+            ...messages(),
+            {
+                role: 'user',
+                contetn: prompt(),
+            },
+        ]);
+        if (answer()) {
+            setMessages([...messages(), answer()]);
+            setAnswer({
+                role: 'assistant',
+                content: '',
+            });
+        }
         const response = await fetch(`/api/saler`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -49,17 +64,18 @@ const AIChat = () => {
             if (value) {
                 const char = decoder.decode(value);
                 console.log(char);
-                if (char === '\n' && answer().endsWith('\n')) {
+                if (char === '\n' && answer().content.endsWith('\n')) {
                     continue;
                 }
                 if (char) {
-                    setAnswer(answer() + char);
+                    setAnswer({
+                        role: 'assistant',
+                        content: answer().content + char,
+                    });
                 }
             }
             done = readerDone;
         }
-        setMessages([...messages(), answer()]);
-        setAnswer('')
         // const result = await response.json();
         // if (result.error) {
         //     setAnswer(result.error.message);
@@ -85,8 +101,18 @@ const AIChat = () => {
                     <ar-icon name="send"></ar-icon>
                 </ar-button>
             </div>
-            <For each={messages()}>{(message, i) => <ar-rich-text text={message}></ar-rich-text>}</For>
-            <ar-rich-text text={answer()}></ar-rich-text>
+            <For each={messages()}>
+                {(message, i) => (
+                    <>
+                        <span>{message.role === 'user' ? '用户：' : '销售助理：'}</span>
+                        <ar-rich-text text={message.content}></ar-rich-text>
+                    </>
+                )}
+            </For>
+            <Show when={answer().content}>
+                <span>销售助理：</span>
+                <ar-rich-text text={answer().content}></ar-rich-text>
+            </Show>
         </div>
     );
 };

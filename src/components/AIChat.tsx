@@ -102,11 +102,19 @@ const AIChat = () => {
                 </ar-button>
             </div>
             <For each={messages()}>
-                {(message, i) => (
-                    <>
-                        <span>{message.role === 'user' ? '用户：' : '销售助理：'}</span>
+                {(message) => (
+                    <Show
+                        when={message.role === 'user'}
+                        fallback={
+                            <>
+                                <span>销售助理：</span>
+                                <ar-rich-text text={message.content}></ar-rich-text>
+                            </>
+                        }
+                    >
+                        <span>用户：</span>
                         <ar-rich-text text={message.content}></ar-rich-text>
-                    </>
+                    </Show>
                 )}
             </For>
             <Show when={answer().content}>

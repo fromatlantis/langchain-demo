@@ -1,6 +1,6 @@
 import { ChainTool, DynamicTool } from 'langchain/tools';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
-import { CharacterTextSplitter } from 'langchain/text_splitter';
+import { CharacterTextSplitter, RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { BaseLanguageModel } from 'langchain/base_language';
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { RetrievalQAChain } from 'langchain/chains';
@@ -58,9 +58,9 @@ export const conversationStage = (llm: BaseLanguageModel, verbose: boolean = fal
     });
 };
 export async function get_working_hours(llm: BaseLanguageModel, embeddings: OpenAIEmbeddings) {
-    const splitter = new CharacterTextSplitter({
-        chunkSize: 1000,
-        chunkOverlap: 150,
+    const splitter = new RecursiveCharacterTextSplitter({
+        chunkSize: 10,
+        chunkOverlap: 1,
     });
     const docs = await splitter.createDocuments([works.content]);
     const new_docs = await splitter.splitDocuments(docs);

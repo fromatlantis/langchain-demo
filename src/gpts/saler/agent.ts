@@ -37,8 +37,8 @@ export const genExecutor = async (openAIApiKey: string) => {
         openAIApiKey,
     });
     const tools = [
-        conversationStage(model),
-        await mattressesSearch(model, embeddings),
+        // conversationStage(model),
+        // await mattressesSearch(model, embeddings),
         await get_working_hours(model, embeddings),
         new Calculator(),
     ];

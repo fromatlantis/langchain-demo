@@ -20,12 +20,12 @@ dependencies:
   '@astrojs/vercel':
     specifier: ^5.2.0
     version: 5.2.0(astro@3.4.2)
-  '@aura-group/aura-desigin':
-    specifier: ^0.0.4
-    version: 0.0.4
-  '@aura-group/aura-desigin-pro':
-    specifier: ^0.0.1
-    version: 0.0.1
+  '@aura-group/aura-design':
+    specifier: ^0.3.16
+    version: 0.3.16
+  '@aura-group/aura-design-pro':
+    specifier: ^0.1.6
+    version: 0.1.6
   '@langchain/anthropic':
     specifier: ^0.0.9
     version: 0.0.9
@@ -315,8 +315,8 @@ packages:
       - supports-color
     dev: false
 
-  /@aura-group/aura-desigin-pro@0.0.1:
-    resolution: {integrity: sha512-Oys3X0K+VtZaWANXiw+yb6lZiOlRXytzUNPn4JOO8WCWqtlBbJYIQBnX4pCxSrGIBaiD6WzhZksUKlT5PX7O0Q==}
+  /@aura-group/aura-design-pro@0.1.6:
+    resolution: {integrity: sha512-4THOA/0m87tnB4bygIXQR7fYBNHNiLusLhE2zCgF32wLuZNUXCYupmggf1SW8fPnzTwlrAKlcN4MEaIa0PH0aA==}
     dependencies:
       highlight.js: 11.9.0
       markdown-it: 13.0.2
@@ -326,8 +326,8 @@ packages:
       solid-js: 1.8.5
     dev: false
 
-  /@aura-group/aura-desigin@0.0.4:
-    resolution: {integrity: sha512-jDsLYa5rWVR2o38+6NtweXqPUVOk9SoXWSWFGjFi+VGbkFZARm/FgpB7SF4rfrNP212K2AXyjhjEXN+uUQtORg==}
+  /@aura-group/aura-design@0.3.16:
+    resolution: {integrity: sha512-gCkGY4xoOuq57CfZU2NlyPqUb5WfIVLkY4b+VUtBYLjv61gk3uA+IVgYsfGtpQv5+qjh5a4Htzai+5Sb9ugfsg==}
     dependencies:
       solid-element: 1.8.0(solid-js@1.8.5)
       solid-js: 1.8.5

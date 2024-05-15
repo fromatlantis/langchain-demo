@@ -74,6 +74,7 @@ const SLOGAN = 'AI expands your life.';
             }
         </style>
         <script src="/src/pwa.ts"></script>
+        <script is:inline src="https://eepaas-public.s3-accelerate.cn-north-1.jdcloud-oss.com/JSSDK/JDME-JSSDK-1.0.31.js"></script>
         {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
     </head>
     <body>

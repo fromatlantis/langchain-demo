@@ -10,6 +10,7 @@ const Home = () => {
     };
     createEffect(async () => {
         if(!code()) return;
+        alert(code())
         const response = await fetch(`/api/jmToken`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +21,7 @@ const Home = () => {
             }),
         });
         const res = await response.json();
-        console.log(res);
+        alert(JSON.stringify(res));
         if (!res.resultData.token) return;
         const responseUser = await fetch(`/api/jmUser`, {
             headers: {
@@ -33,6 +34,7 @@ const Home = () => {
         });
         const resUser = await responseUser.json();
         setUser(resUser);
+        alert(JSON.stringify(resUser));
     });
 
     onMount(() => {

@@ -79,22 +79,6 @@ const SLOGAN = 'AI expands your life.';
     </head>
     <body>
         <div class="h-full flex flex-row">
-            <div class="h-full overflow-auto aside">
-                <!-- 左侧菜单 -->
-                <h2 class="logo">LangChain</h2>
-                <div class:list={['menu-item', { active: pathname === '/' }]}>
-                    <a href="/">首页</a>
-                </div>
-                <div class:list={['menu-item', { active: pathname === '/model-io' }]}>
-                    <a href="/model-io">Model I/O</a>
-                </div>
-                <div class:list={['menu-item', { active: pathname === '/retrieval-qa' }]}>
-                    <a href="/retrieval-qa">Retrieval QA</a>
-                </div>
-                <!-- <div class:list={['menu-item', { active: pathname === '/summarization' }]}>
-                    <a href="/summarization">Summarization</a>
-                </div> -->
-            </div>
             <div class="h-full overflow-auto flex-1">
                 <!-- 主要内容区插槽 -->
                 <slot />

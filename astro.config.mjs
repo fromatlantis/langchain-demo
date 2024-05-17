@@ -12,7 +12,9 @@ const adapter = () => {
     if (process.env.VERCEL) {
         return vercel();
     } else {
-        return deno();
+        return node({
+            mode: 'standalone'
+        });
     }
 };
 // https://astro.build/config

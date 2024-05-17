@@ -54,13 +54,14 @@ const Home = () => {
 
     return (
         <>
-            <p>code: {code()}</p>
+            <p>Code: {code()}</p>
             <p>用户信息：</p>
-            <p class="flex gap-2 items-center">
-                <img class="w-10" src={user().avatar} alt="" />
-                <span>{user().name}</span>
-            </p>
-            {user}
+            <Show when={user()}>
+                <p class="flex gap-2 items-center">
+                    <img class="w-10" src={user().avatar} alt="" />
+                    <span>{user().name}</span>
+                </p>
+            </Show>
         </>
     );
 };

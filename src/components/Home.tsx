@@ -56,9 +56,9 @@ const Home = () => {
         <>
             <p>Code: {code()}</p>
             <p>用户信息：</p>
-            <Show when={user()}>
-                <p class="flex gap-2 items-center">
-                    <img class="w-10" src={user().avatar} alt="" />
+            <Show when={user()} fallback={<span>认证中...</span>}>
+                <p class="flex gap-2 justify-center items-center">
+                    <img class="w-10 rd" src={user().avatar} alt="" />
                     <span>{user().name}</span>
                 </p>
             </Show>

@@ -22,14 +22,14 @@ const Home = () => {
         });
         const res = await response.json();
         alert(JSON.stringify(res));
-        if (!res.resultData.token) return;
+        if (!res.resultData.data.token) return;
         const responseUser = await fetch(`/api/jmUser`, {
             headers: {
                 'Content-Type': 'application/json',
             },
             method: 'POST',
             body: JSON.stringify({
-                token: res.resultData.token,
+                token: res.resultData.data.token,
             }),
         });
         const resUser = await responseUser.json();
